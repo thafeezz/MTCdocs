@@ -1,0 +1,5 @@
+volume/
+.env
+.idea/
+.terraform/
+.terraform.lock.hcl
