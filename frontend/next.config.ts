@@ -1,12 +1,12 @@
 import type { NextConfig } from "next";
 
 const withMarkdoc = require("@markdoc/next.js")({
-    schemaPath: "",
+  schemaPath: "markdoc/schema.ts",
   mode: "static",
 });
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  pageExtensions: ["md", "mdoc", "js", "ts", "jsx", "tsx"],
 };
 
 export default withMarkdoc(nextConfig);

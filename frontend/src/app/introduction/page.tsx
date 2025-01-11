@@ -1,6 +1,6 @@
 import Layout from "@/components/layout";
-import { getMarkdownContent } from "../../../../markdoc/parse";
+import { getMarkdownContent } from "../../../markdoc/parse";
 
-export default function Doc() {
+export default function Intro() {
   return <Layout>{getMarkdownContent("introduction")}</Layout>;
 }

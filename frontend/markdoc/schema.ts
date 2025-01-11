@@ -1,41 +1,32 @@
-import { Config } from "@markdoc/markdoc";
-
-const config: Config = {
+const config = {
   nodes: {
-    document: {
-      render: "article",
-    },
     heading: {
-      render: "h1",
+      render: "Heading",
       attributes: {
-        level: { type: Number, required: true },
         id: { type: String },
+        level: { type: Number },
       },
     },
-    paragraph: {
-      render: "p",
-    },
-    // Add other nodes as needed
   },
   tags: {
-    // Define your custom tags here
     callout: {
       render: "Callout",
       attributes: {
-        type: {
+        title: {
           type: String,
-          default: "note",
+          description: "Top callout title",
         },
       },
     },
   },
   variables: {
-    markdoc: {
-      frontmatter: {
-        title: { type: String, required: true },
-        description: { type: String, required: true },
-      },
+    name: "Dr. Mark",
+    frontmatter: {
+      title: "Configuration options",
     },
+  },
+  functions: {
+    
   },
 };
 
