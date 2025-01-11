@@ -4,13 +4,13 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 
 const sections = [
-  { id: 1, name: "Introduction", subsections: ["Overview", "Getting Started"] },
+  { id: 1, name: "Introduction", subsections: ["Overview"] },
   { id: 2, name: "Library", subsections: ["API", "Guides", "Docs"] },
-  { id: 3, name: "Curriculum", subsections: ["Course 1", "Course 2"] },
+  { id: 3, name: "Curriculum", subsections: [] },
   { id: 4, name: "Contact", subsections: ["Support", "Feedback"] },
 ];
 
-export default function Sidebar() {
+export const Sidebar = () => {
   return (
     <aside>
       <div className="bg-gradient-to-l from-themegray/80 to-transparent h-screen w-[250px] fixed overflow-auto">
@@ -28,18 +28,18 @@ export default function Sidebar() {
       </div>
     </aside>
   );
-}
+};
 
 interface SidebarNavProps {
   navName: string;
   subsections: string[];
 }
 
-function SidebarNav({ navName, subsections }: SidebarNavProps) {
+const SidebarNav = ({ navName, subsections }: SidebarNavProps) => {
   return (
     <li className="ml-2 text-offwhite">
       <Link
-        href={`/${navName.toLowerCase()}`}
+        href={`/docs/${navName.toLowerCase()}`}
         className={`${pressStart.className} hover:underline`}
       >
         <Button className="text-[12px]" variant="link">
@@ -51,7 +51,7 @@ function SidebarNav({ navName, subsections }: SidebarNavProps) {
           {subsections.map((subsection, index) => (
             <li key={index} className="text-offwhite text-[10px]">
               <Link
-                href={`/${navName.toLowerCase()}/${subsection.toLowerCase()}`}
+                href={`/docs/${navName.toLowerCase()}/${subsection.toLowerCase()}`}
                 className={`${pressStart.className} hover:underline`}
               >
                 <Button className="text-[10px]" variant="link">
@@ -64,4 +64,4 @@ function SidebarNav({ navName, subsections }: SidebarNavProps) {
       )}
     </li>
   );
-}
+};

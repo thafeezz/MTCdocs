@@ -1,11 +1,9 @@
-"use client";
-
 import { Button } from "@/components/ui/button";
-import WelcomeTitle from "../components/welcome";
+import { WelcomeTitle } from "../components/welcome";
 import Link from "next/link";
 import { pressStart } from "../../styles/fonts";
 
-export default function Home() {
+const Home = () => {
   return (
     <div className="p-8 bg-themegray">
       <main className="min-h-screen">
@@ -21,4 +19,6 @@ export default function Home() {
       </main>
     </div>
   );
-}
+};
+
+export default Home;

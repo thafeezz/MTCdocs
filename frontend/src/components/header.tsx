@@ -2,7 +2,7 @@ import Link from "next/link";
 import { pressStart } from "../../styles/fonts";
 import { Button } from "./ui/button";
 
-export default function Header() {
+export const Header = () => {
   return (
     <header className="sticky z-30 top-0 w-full">
       <div className="h-32 flex justify-center bg-gradient-to-b from-themegray/80 to-transparent">
@@ -21,4 +21,4 @@ export default function Header() {
       </div>
     </header>
   );
-}
+};
