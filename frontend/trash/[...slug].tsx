@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from "next";
-import { getMarkdownContent } from "../../../markdoc/parse";
-import { getAllSlugs } from "../../lib/markdoc";
+import { getMarkdownContent } from "../markdoc/parse";
+import { getAllSlugs } from "../src/lib/markdoc";
 import Layout from "@/components/layout";
 import { ParsedUrlQuery } from "querystring";
 import { ReactNode } from "react";

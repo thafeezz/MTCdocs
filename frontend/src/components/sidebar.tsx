@@ -39,7 +39,7 @@ function SidebarNav({ navName, subsections }: SidebarNavProps) {
   return (
     <li className="ml-2 text-offwhite">
       <Link
-        href={`/${navName.toLowerCase()}`}
+        href={`docs/${navName.toLowerCase()}`}
         className={`${pressStart.className} hover:underline`}
       >
         <Button className="text-[12px]" variant="link">
@@ -51,7 +51,7 @@ function SidebarNav({ navName, subsections }: SidebarNavProps) {
           {subsections.map((subsection, index) => (
             <li key={index} className="text-offwhite text-[10px]">
               <Link
-                href={`/${navName.toLowerCase()}/${subsection.toLowerCase()}`}
+                href={`/docs/${navName.toLowerCase()}/${subsection.toLowerCase()}`}
                 className={`${pressStart.className} hover:underline`}
               >
                 <Button className="text-[10px]" variant="link">
