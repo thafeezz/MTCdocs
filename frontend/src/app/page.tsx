@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
-import { WelcomeTitle } from "../components/welcome";
+import { Button } from "@/components/ui/Button";
+import { WelcomeTitle } from "@/components/ui/Welcome";
 import Link from "next/link";
 import { pressStart } from "../../styles/fonts";
 

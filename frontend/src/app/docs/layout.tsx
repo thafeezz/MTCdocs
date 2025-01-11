@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { DocContent, Sidebar, Header } from "@/components";
+import { DocContent, Sidebar, Header } from "@/components/ui";
 
 const DocsLayout = ({ children }: { children: ReactNode }) => {
   return (

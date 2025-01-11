@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { jerseyOne, pressStart } from "../../styles/fonts";
+import { jerseyOne, pressStart } from "../../../styles/fonts";
 
 export const WelcomeTitle = () => {
   const [text, setText] = useState("");

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { pressStart } from "../../styles/fonts";
-import { Button } from "./ui/button";
+import { pressStart } from "../../../styles/fonts";
+import { Button } from "./Button";
 
 export const Header = () => {
   return (

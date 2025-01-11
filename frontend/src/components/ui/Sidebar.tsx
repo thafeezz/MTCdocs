@@ -1,7 +1,7 @@
 import React from "react";
-import { pressStart } from "../../styles/fonts";
+import { pressStart } from "../../../styles/fonts";
 import Link from "next/link";
-import { Button } from "./ui/button";
+import { Button } from "./Button";
 
 const sections = [
   { id: 1, name: "Introduction", subsections: ["Overview"] },
