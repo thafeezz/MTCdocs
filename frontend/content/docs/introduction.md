@@ -8,4 +8,4 @@ Welcome to the MTCdocs, a platform hosting all of MTC's educational material at 
 
 ## What is MTC?
 
-MTC is a platform...
+MTC is a platform that __df__ 
