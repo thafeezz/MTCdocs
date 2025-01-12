@@ -1,4 +1,4 @@
-import { Jersey_15, Press_Start_2P } from "next/font/google";
+import { Jersey_15, Lato, Press_Start_2P } from "next/font/google";
 
 export const jerseyOne = Jersey_15({
   weight: "400",
@@ -10,4 +10,7 @@ export const pressStart = Press_Start_2P({
   subsets: ["latin"],
 });
 
-
+export const lato = Lato({
+  weight: "400",
+  subsets: ["latin"],
+});

@@ -1,6 +1,7 @@
 import { Config, nodes } from "@markdoc/markdoc";
 import Heading from "./Heading";
 import Callout from "./Callout";
+import { ReactNode } from "react";
 
 const config: Config = {
   nodes: {
@@ -17,7 +18,7 @@ const config: Config = {
   },
   tags: {
     callout: {
-      render: "Callout",
+      render: "callout",
       attributes: {
         title: {
           type: String,
@@ -25,22 +26,42 @@ const config: Config = {
         },
       },
     },
+    break: {
+      render: "break",
+      selfClosing: true,
+    },
+    underline: {
+      render: "underline",
+      selfClosing: false,
+    },
+    a: {
+      render: "a",
+      selfClosing: false,
+      attributes: {
+        href: { type: String },
+        title: { type: String },
+      },
+    },
   },
 };
 
 const components = {
-  // Your custom components
   Heading: Heading,
-  Paragraph: ({ children }: any) => {
-    return <div className="text-base pb-2">{children}</div>;
+  Paragraph: ({ children }: { children: ReactNode }) => {
+    return <div className="text-lg pb-1">{children}</div>;
   },
   Callout: Callout,
-
-  strong: ({ children }: any) => (
+  break: () => <br className="my-4" />,
+  underline: ({ children }: { children: ReactNode }) => (
+    <span style={{ textDecoration: "underline" }}>{children}</span>
+  ),
+  strong: ({ children }: { children: ReactNode }) => (
     <strong className="font-bold">{children}</strong>
   ),
-  em: ({ children }: any) => <em className="italic">{children}</em>,
-  link: ({ children, href, title }: any) => (
+  em: ({ children }: { children: ReactNode }) => (
+    <em className="italic">{children}</em>
+  ),
+  a: ({ children, href, title }: any) => (
     <a href={href} title={title} className="text-blue-500 hover:underline">
       {children}
     </a>
