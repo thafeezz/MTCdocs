@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { lato } from "../../../styles/fonts";
 
 interface DocContentProps {
   children: ReactNode;
@@ -7,8 +6,8 @@ interface DocContentProps {
 
 export const DocContent = ({ children }: DocContentProps) => {
   return (
-    <main className="bg-themegray ml-[400px] mr-[250px] p-[64px]">
-      <div className={`${lato.className} `}>{children}</div>
+    <main className="flex-1 p-6 lg:p-16 ml-[40px] lg:ml-[250px] transition-all duration-300">
+      <div className="max-w-6xl mx-auto">{children}</div>
     </main>
   );
 };

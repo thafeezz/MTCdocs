@@ -1,8 +1,6 @@
 import { getMarkdownContent } from "@/lib/markdoc";
 import React from "react";
 
-// async function generateStaticParams() {}
-
 interface DocumentProps {
   params: Promise<{ slug?: string[] }>;
 }
@@ -18,7 +16,7 @@ const Document = async ({ params }: DocumentProps) => {
     return <div>Document not found</div>;
   }
 
-  return <>{content}</>;
+  return <div>{content}</div>;
 };
 
 export default Document;
