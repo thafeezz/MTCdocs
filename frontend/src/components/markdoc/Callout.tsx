@@ -5,9 +5,9 @@ type CalloutProps = {
 
 const Callout = ({ children, title }: CalloutProps) => {
   return (
-    <div className="my-4 space-y-4 flex flex-col bg-blue-300">
-      <div className="text-3xl text-blue-500 font-semibold">{title}</div>
-      <div>{children}</div>
+    <div className="bg-slate-800/40 border-l-4 border-maize rounded-r-lg p-4 my-6">
+      <div className="font-medium text-blue-400 mb-2">{title}</div>
+      <div className="text-offwhite">{children}</div>
     </div>
   );
 };

@@ -21,16 +21,18 @@ const DocsLayout = ({ children }: { children: ReactNode }) => {
       <div className="flex flex-1 relative">
         {!isCollapsed && (
           <div
-            className="fixed inset-0 bg-black/30 backdrop-blur-sm lg:hidden z-20"
+            className="fixed inset-0 bg-black/30 backdrop-blur-sm lg:hidden z-10"
             onClick={toggleSidebar}
           />
         )}
-        <Sidebar
-          isCollapsed={isCollapsed}
-          onToggle={toggleSidebar}
-          onNavigate={closeSidebar}
-        />
-        <DocContent>{children}</DocContent>
+        <div className="flex flex-1 gap-4 relative">
+          <Sidebar
+            isCollapsed={isCollapsed}
+            onToggle={toggleSidebar}
+            onNavigate={closeSidebar}
+          />
+          <DocContent>{children}</DocContent>
+        </div>
       </div>
     </div>
   );

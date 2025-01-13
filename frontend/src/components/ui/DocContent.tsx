@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { kanit } from "../../../styles/fonts";
 
 interface DocContentProps {
   children: ReactNode;
@@ -6,8 +7,12 @@ interface DocContentProps {
 
 export const DocContent = ({ children }: DocContentProps) => {
   return (
-    <main className="flex-1 p-6 lg:p-16 ml-[40px] lg:ml-[250px] transition-all duration-300">
-      <div className="max-w-6xl mx-auto">{children}</div>
+    <main className="flex-1 p-6 lg:p-16">
+      <div
+        className={`${kanit.className} max-w-6xl mx-auto prose prose-invert prose-blue`}
+      >
+        {children}
+      </div>
     </main>
   );
 };

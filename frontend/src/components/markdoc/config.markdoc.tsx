@@ -1,7 +1,7 @@
 import { Config, nodes } from "@markdoc/markdoc";
 import Heading from "./Heading";
 import Callout from "./Callout";
-import { ReactNode } from "react";
+import React, { ReactNode } from "react";
 
 const config: Config = {
   nodes: {
@@ -18,29 +18,16 @@ const config: Config = {
   },
   tags: {
     callout: {
-      render: "callout",
+      render: "Callout",
       attributes: {
         title: {
           type: String,
-          default: "default title",
         },
       },
-    },
-    break: {
-      render: "break",
-      selfClosing: true,
     },
     underline: {
       render: "underline",
       selfClosing: false,
-    },
-    a: {
-      render: "a",
-      selfClosing: false,
-      attributes: {
-        href: { type: String },
-        title: { type: String },
-      },
     },
   },
 };
@@ -48,10 +35,9 @@ const config: Config = {
 const components = {
   Heading: Heading,
   Paragraph: ({ children }: { children: ReactNode }) => {
-    return <div className="text-lg pb-1">{children}</div>;
+    return <div className="text-lg mb-5">{children}</div>;
   },
   Callout: Callout,
-  break: () => <br className="my-4" />,
   underline: ({ children }: { children: ReactNode }) => (
     <span style={{ textDecoration: "underline" }}>{children}</span>
   ),
@@ -61,21 +47,12 @@ const components = {
   em: ({ children }: { children: ReactNode }) => (
     <em className="italic">{children}</em>
   ),
-  a: ({ children, href, title }: any) => (
-    <a href={href} title={title} className="text-blue-500 hover:underline">
-      {children}
-    </a>
-  ),
-  blockquote: ({ children }: any) => (
+  blockquote: ({ children }: { children: ReactNode }) => (
     <blockquote className="pl-4 border-l-4 border-gray-200 my-4">
       {children}
     </blockquote>
   ),
-  list: ({ children, ordered }: any) => {
-    const ListTag = ordered ? "ol" : "ul";
-    return <ListTag className="list-inside my-4 space-y-2">{children}</ListTag>;
-  },
-  item: ({ children }: any) => <li className="list-disc ml-4">{children}</li>,
+  // TODO: add typing like above instead of type any
   code: ({ children, language }: any) => (
     <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto my-4">
       <code className={language ? `language-${language}` : ""}>{children}</code>

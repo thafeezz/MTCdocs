@@ -5,8 +5,8 @@ import { Button } from "./Button";
 export const Header = () => {
   return (
     <header className="sticky z-30 top-0 w-full">
-      <div className="h-32 flex justify-center bg-gradient-to-b from-themegray/80 to-transparent">
-        <Button className="flex mt-8">
+      <div className="flex items-center justify-center h-32 border-b-2 bg-gradient-to-b from-themegray/80 to-transparent">
+        <Button>
           <Link href="/">
             <span className={`${pressStart.className} text-maize text-[20px]`}>
               MTC

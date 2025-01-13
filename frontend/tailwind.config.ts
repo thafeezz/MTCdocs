@@ -1,5 +1,11 @@
 import type { Config } from "tailwindcss";
 
+const ghost = "#F8F8FF";
+const maize = "#FFCB05";
+const offwhite = "#FAF9F6";
+const umblue = "#0942b8";
+const themegray = "#09090B";
+
 export default {
   darkMode: ["class"],
   content: [
@@ -39,11 +45,11 @@ export default {
       colors: {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        ghost: "#F8F8FF",
-        maize: "#FFCB05",
-        offwhite: "#FAF9F6",
-        umblue: "#0942b8",
-        themegray: "#09090B",
+        ghost: ghost,
+        maize: maize,
+        offwhite: offwhite,
+        umblue: umblue,
+        themegray: themegray,
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
@@ -98,7 +104,35 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            color: offwhite,
+            ul: {
+              listStyleType: "disc", // Change bullet style for unordered lists
+              paddingLeft: "1.5rem", // Adjust left padding
+              marginBottom: "1rem", // Add spacing between lists
+            },
+            ol: {
+              listStyleType: "decimal", // Use numbers for ordered lists
+              paddingLeft: "1.5rem",
+              marginBottom: "1rem",
+              fontSize: "13pt",
+            },
+            "ul > li::marker": {
+              color: offwhite,
+            },
+            "ol > li::marker": {
+              color: offwhite,
+            },
+            li: {
+              marginBottom: "0.5rem", // Space between list items
+              color: offwhite,
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate"), require("@tailwindcss/typography")],
 } satisfies Config;

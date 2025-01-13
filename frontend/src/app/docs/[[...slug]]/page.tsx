@@ -8,6 +8,7 @@ interface DocumentProps {
 const Document = async ({ params }: DocumentProps) => {
   const { slug } = await params;
 
+
   const slugPath = !slug ? "docs" : slug.join("/");
 
   const content = await getMarkdownContent(slugPath);
