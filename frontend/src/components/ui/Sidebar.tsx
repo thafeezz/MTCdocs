@@ -5,11 +5,15 @@ import Link from "next/link";
 import { pressStart } from "../../../styles/fonts";
 import { Button } from "./Button";
 
+// TODO revamp directory structure to support multiple nested dirs and dynamic generation of sections based on structure of content/
 const sections = [
-  { id: 1, name: "Overview", subsections: [] },
-  { id: 2, name: "Library", subsections: ["API", "Guides", "Docs"] },
-  { id: 3, name: "Curriculum", subsections: [] },
-  { id: 4, name: "Contact", subsections: ["Support", "Feedback"] },
+  { id: 0, name: "/docs", subsections: [] }, // TODO - make all dirs below children of /docs/
+  { id: 1, name: "/overview", subsections: ["/thesis"] },
+  { id: 2, name: "/lib", subsections: ["/EECS"] },
+  { id: 3, name: "/curriculum", subsections: [] },
+  { id: 4, name: "/contribute", subsections: [] },
+  { id: 5, name: "/contact", subsections: ["/support"] },
+  { id: 6, name: "/todo", subsections: [] },
 ];
 
 interface SidebarProps {

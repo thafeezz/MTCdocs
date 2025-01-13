@@ -2,6 +2,7 @@ import { Config, nodes } from "@markdoc/markdoc";
 import Heading from "./Heading";
 import Callout from "./Callout";
 import React, { ReactNode } from "react";
+import Note from "./Note";
 
 const config: Config = {
   nodes: {
@@ -25,6 +26,14 @@ const config: Config = {
         },
       },
     },
+    note: {
+      render: "Note",
+      attributes: {
+        title: {
+          type: String,
+        },
+      },
+    },
     underline: {
       render: "underline",
       selfClosing: false,
@@ -38,6 +47,7 @@ const components = {
     return <div className="text-lg mb-5">{children}</div>;
   },
   Callout: Callout,
+  Note: Note,
   underline: ({ children }: { children: ReactNode }) => (
     <span style={{ textDecoration: "underline" }}>{children}</span>
   ),

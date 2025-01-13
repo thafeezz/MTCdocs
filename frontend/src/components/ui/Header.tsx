@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { pressStart } from "../../../styles/fonts";
+import { jerseyOne, pressStart } from "../../../styles/fonts";
 import { Button } from "./Button";
 
 export const Header = () => {
@@ -8,14 +8,11 @@ export const Header = () => {
       <div className="flex items-center justify-center h-[80px] border-b-2 bg-gradient-to-b from-themegray/80 to-transparent">
         <Button>
           <Link href="/">
-            <span className={`${pressStart.className} text-maize text-[20px]`}>
-              MTC
-            </span>
-            <span
-              className={`${pressStart.className} text-offwhite ml-1 text-[18px]`}
-            >
-              docs
-            </span>
+            <div className={`${jerseyOne.className}`}>
+              <span className=" text-maize text-[40px]">MTC</span>
+              <span className="text-offwhite text-[40px]">/</span>
+              <span className="text-umblue text-[40px]">docs</span>
+            </div>
           </Link>
         </Button>
       </div>

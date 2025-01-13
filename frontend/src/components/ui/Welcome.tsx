@@ -6,7 +6,7 @@ import { jerseyOne, pressStart } from "../../../styles/fonts";
 export const WelcomeTitle = () => {
   const [text, setText] = useState("");
 
-  const fullText = "MTCdocs";
+  const fullText = "MTC/docs";
 
   useEffect(() => {
     if (text.length < fullText.length) {
@@ -28,7 +28,8 @@ export const WelcomeTitle = () => {
       <div className="flex items-baseline leading-none">
         <h1 className={`${jerseyOne.className} text-[128px] flex`}>
           <span className="text-maize">{text.slice(0, 3)}</span>
-          <span className="text-umblue">{text.slice(3)}</span>
+          <span className="text-offwhite">{text.slice(3, 4)}</span>
+          <span className="text-umblue">{text.slice(4)}</span>
           <span className="w-[8px] h-[128px] bg-maize animate-blink ml-2"></span>
         </h1>
       </div>
