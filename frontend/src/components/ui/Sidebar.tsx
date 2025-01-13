@@ -24,16 +24,11 @@ export const Sidebar = ({
   onNavigate,
 }: SidebarProps) => {
   return (
-    <aside className="relative flex-shrink-0">
-      {/* <div
-        className={`${
-          isCollapsed ? "w-10" : "w-60"
-        } transition-all duration-300 bg-gradient-to-l bg-themegray h-full overflow-auto border-r-2 border-offwhite z-30`}
-      > */}
+    <aside className="z-20 relative">
       <div
         className={`${
           isCollapsed ? "w-10" : "w-60"
-        } transition-all duration-300 bg-gradient-to-l bg-themegray overflow-auto border-r-2 border-offwhite z-30 sticky top-32 ]`}
+        } transition-all duration-300 bg-gradient-to-l bg-themegray h-full overflow-auto border-r-2 border-offwhite`}
       >
         <div className="flex justify-end pt-3 pr-3">
           <button
