@@ -6,8 +6,8 @@ interface DocumentProps {
   params: { slug?: string[] };
 }
 
-const Document = ({ params }: DocumentProps) => {
-  const { slug } = params;
+const Document = async ({ params }: DocumentProps) => {
+  const { slug } = await params;
   const slugPath = !slug ? "docs" : slug.join("/");
 
   try {

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { pressStart } from "../../../styles/fonts";
 import { Button } from "./Button";
 import { DirectoryTree } from "@/lib/types";
+import { usePathname } from "next/navigation";
 
 interface SidebarProps {
   tree: DirectoryTree;
@@ -32,7 +33,6 @@ export const Sidebar = ({
             {isCollapsed ? ">" : "<"}
           </button>
         </div>
-
         <nav>
           <ul className="space-y-1 p-4">
             {!isCollapsed &&
@@ -57,25 +57,24 @@ interface DirectoryItemProps {
 }
 
 const DirectoryItem = ({ item, onNavigate, level = 0 }: DirectoryItemProps) => {
-  // Create clean URL path without 'content', 'docs', and '.md'
+  const pathname = usePathname(); // Add this hook to get current path
+
   const getCleanPath = (itemPath: string): string => {
     const segments = itemPath
       .split("/")
       .filter(
         (segment) => segment && segment !== "content" && segment !== "docs"
       )
-      .map((segment) => segment.replace(/\.md$/, "")); // Remove .md extension
+      .map((segment) => segment.replace(/\.md$/, ""));
 
-    // If it's a directory, we want to point to its index file
-    // but keep the URL clean (without /index)
     if (item.type === "directory") {
       return `/docs/${segments.join("/")}`;
     }
-
     return `/docs/${segments.join("/")}`;
   };
 
   const urlPath = getCleanPath(item.path);
+  const isActive = pathname === urlPath;
 
   return (
     <li className={`ml-${level * 2} text-white`}>
@@ -84,7 +83,12 @@ const DirectoryItem = ({ item, onNavigate, level = 0 }: DirectoryItemProps) => {
         className={`${pressStart.className}`}
         onClick={onNavigate}
       >
-        <Button className="text-xs font-bold" variant="link">
+        <Button
+          className={`text-xs font-bold ${
+            isActive ? "text-maize" : "text-white"
+          }`}
+          variant="link"
+        >
           {item.name}
           {item.type === "directory" && "/"}
         </Button>
