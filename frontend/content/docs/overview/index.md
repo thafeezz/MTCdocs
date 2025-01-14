@@ -24,4 +24,4 @@ MTC/docs contains 2 main parts:
 1. Library (MTC/lib)
 2. Curriculum (MTC/c8m)
 
-The MTC/lib is a place for all UMich related information (starting with EECS for now). Not sure about a professor? Check the library! Is EECS 482 _really_ that bad? How do I succeed in 281? What classes do I take? The library will answer all these questions with docs authored by other UMich students. 
+The MTC/lib is a place for all UMich related information (starting with EECS for now). Not sure about a professor? Check the library! Is EECS 482 _really_ that bad? How do I succeed in 281? What classes do I take? The library will answer all these questions with docs authored by other UMich students.

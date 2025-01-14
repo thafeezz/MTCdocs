@@ -1,23 +1,27 @@
 import { getMarkdownContent } from "@/lib/markdoc";
 import React from "react";
+import { notFound } from "next/navigation";
 
 interface DocumentProps {
-  params: Promise<{ slug?: string[] }>;
+  params: { slug?: string[] };
 }
 
-const Document = async ({ params }: DocumentProps) => {
-  const { slug } = await params;
-
-
+const Document = ({ params }: DocumentProps) => {
+  const { slug } = params;
   const slugPath = !slug ? "docs" : slug.join("/");
 
-  const content = await getMarkdownContent(slugPath);
+  try {
+    const content = getMarkdownContent(slugPath);
 
-  if (!content) {
-    return <div>Document not found</div>;
+    if (!content) {
+      notFound();
+    }
+
+    return <div>{content}</div>;
+  } catch (error) {
+    console.error("Error loading content:", error);
+    notFound();
   }
-
-  return <div>{content}</div>;
 };
 
 export default Document;

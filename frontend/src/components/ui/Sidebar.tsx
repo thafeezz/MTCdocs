@@ -1,28 +1,18 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { pressStart } from "../../../styles/fonts";
 import { Button } from "./Button";
-
-// TODO revamp directory structure to support multiple nested dirs and dynamic generation of sections based on structure of content/
-const sections = [
-  { id: 0, name: "/docs", subsections: [] }, // TODO - make all dirs below children of /docs/
-  { id: 1, name: "/overview", subsections: ["/thesis"] },
-  { id: 2, name: "/lib", subsections: ["/EECS"] },
-  { id: 3, name: "/curriculum", subsections: [] },
-  { id: 4, name: "/contribute", subsections: [] },
-  { id: 5, name: "/contact", subsections: ["/support"] },
-  { id: 6, name: "/todo", subsections: [] },
-];
+import { DirectoryTree } from "@/lib/types";
 
 interface SidebarProps {
+  tree: DirectoryTree;
   isCollapsed: boolean;
   onToggle: () => void;
   onNavigate: () => void;
 }
 
 export const Sidebar = ({
+  tree,
   isCollapsed,
   onToggle,
   onNavigate,
@@ -45,15 +35,14 @@ export const Sidebar = ({
 
         <nav>
           <ul className="space-y-1 p-4">
-            {sections.map((section) => (
-              <SidebarNav
-                key={section.id}
-                navName={section.name}
-                subsections={section.subsections}
-                isCollapsed={isCollapsed}
-                onNavigate={onNavigate}
-              />
-            ))}
+            {!isCollapsed &&
+              tree.children?.map((item) => (
+                <DirectoryItem
+                  key={item.path}
+                  item={item}
+                  onNavigate={onNavigate}
+                />
+              ))}
           </ul>
         </nav>
       </div>
@@ -61,50 +50,59 @@ export const Sidebar = ({
   );
 };
 
-interface SidebarNavProps {
-  navName: string;
-  subsections: string[];
-  isCollapsed: boolean;
+interface DirectoryItemProps {
+  item: DirectoryTree;
   onNavigate: () => void;
+  level?: number;
 }
 
-const SidebarNav = ({
-  navName,
-  subsections,
-  isCollapsed,
-  onNavigate,
-}: SidebarNavProps) => {
+const DirectoryItem = ({ item, onNavigate, level = 0 }: DirectoryItemProps) => {
+  // Create clean URL path without 'content', 'docs', and '.md'
+  const getCleanPath = (itemPath: string): string => {
+    const segments = itemPath
+      .split("/")
+      .filter(
+        (segment) => segment && segment !== "content" && segment !== "docs"
+      )
+      .map((segment) => segment.replace(/\.md$/, "")); // Remove .md extension
+
+    // If it's a directory, we want to point to its index file
+    // but keep the URL clean (without /index)
+    if (item.type === "directory") {
+      return `/docs/${segments.join("/")}`;
+    }
+
+    return `/docs/${segments.join("/")}`;
+  };
+
+  const urlPath = getCleanPath(item.path);
+
   return (
-    <li className="ml-2 text-white">
+    <li className={`ml-${level * 2} text-white`}>
       <Link
-        href={`/docs/${navName.toLowerCase()}`}
+        href={urlPath}
         className={`${pressStart.className}`}
         onClick={onNavigate}
       >
-        <Button
-          className={`text-xs font-bold ${isCollapsed ? "hidden" : "inline"}`}
-          variant="link"
-        >
-          {navName}
+        <Button className="text-xs font-bold" variant="link">
+          {item.name}
+          {item.type === "directory" && "/"}
         </Button>
       </Link>
-      {!isCollapsed && subsections.length > 0 && (
+      {item.children && item.children.length > 0 && (
         <ul className="ml-4 space-y-1">
-          {subsections.map((subsection, index) => (
-            <li key={index} className="text-offwhite text-xs">
-              <Link
-                href={`/docs/${navName.toLowerCase()}/${subsection.toLowerCase()}`}
-                className={`${pressStart.className}`}
-                onClick={onNavigate}
-              >
-                <Button className="text-xs" variant="link">
-                  {subsection}
-                </Button>
-              </Link>
-            </li>
+          {item.children.map((child) => (
+            <DirectoryItem
+              key={child.path}
+              item={child}
+              onNavigate={onNavigate}
+              level={level + 1}
+            />
           ))}
         </ul>
       )}
     </li>
   );
 };
+
+export default Sidebar;
