@@ -19,33 +19,28 @@ export const Sidebar = ({
   onNavigate,
 }: SidebarProps) => {
   return (
-    <aside className="z-20 relative">
-      <div
-        className={`${
-          isCollapsed ? "w-10" : "w-60"
-        } transition-all duration-300 bg-gradient-to-l bg-themegray h-full overflow-auto border-r-2 border-offwhite`}
-      >
-        <div className="flex justify-end pt-3 pr-3">
-          <button
-            onClick={onToggle}
-            className={`${pressStart.className} text-offwhite hover:bg-gray-900 rounded text-xs`}
-          >
-            {isCollapsed ? ">" : "<"}
-          </button>
-        </div>
-        <nav>
-          <ul className="space-y-1 p-4">
-            {!isCollapsed &&
-              tree.children?.map((item) => (
-                <DirectoryItem
-                  key={item.path}
-                  item={item}
-                  onNavigate={onNavigate}
-                />
-              ))}
-          </ul>
-        </nav>
+    <aside className="h-full bg-gradient-to-l from-themegray to-themegray border-r-2 border-offwhite flex flex-col overflow-y-auto">
+      <div className="flex justify-end p-3 flex-shrink-0">
+        <button
+          onClick={onToggle}
+          className={`${pressStart.className} text-offwhite hover:bg-gray-900 rounded text-xs`}
+        >
+          {isCollapsed ? ">" : "<"}
+        </button>
       </div>
+
+      <nav className="flex-1">
+        <ul className="space-y-1 p-4">
+          {!isCollapsed &&
+            tree.children?.map((item) => (
+              <DirectoryItem
+                key={item.path}
+                item={item}
+                onNavigate={onNavigate}
+              />
+            ))}
+        </ul>
+      </nav>
     </aside>
   );
 };

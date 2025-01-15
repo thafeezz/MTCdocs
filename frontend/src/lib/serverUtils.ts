@@ -9,6 +9,7 @@ export const navConfig = {
     "curriculum",
     "contribute",
     "contact",
+    "hello",
     "todo",
   ],
   // Define sections that should show their children by default
