@@ -17,6 +17,12 @@ const config: Config = {
       render: "Paragraph",
     },
   },
+  variables: {
+    frontmatter: {
+      type: Object,
+      default: {},
+    },
+  },
   tags: {
     callout: {
       render: "Callout",

@@ -2,7 +2,7 @@
 title: Overview
 ---
 
-# Overview
+# {% $frontmatter.title %}
 
 {%note%} 🚧 MTC/docs is in its early phases, feel free to [contribute](/docs/contribute) or [reach out](/docs/contact) if you would like to get involved! 🚧 {%/note%}
 

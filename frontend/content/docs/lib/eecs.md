@@ -1,3 +1,10 @@
+---
+title: EECS 183-370
+author: Ammar Ateya
+---
+
+> Written by {% $frontmatter.author %}
+
 # EECS
 
 ## Academics
