@@ -27,7 +27,7 @@ export const Header = () => {
           </Link>
         </Button>
 
-        {/* Empty div to maintain center alignment with justify-between */}
+        {/* empty div to maintain center alignment with justify-between */}
         <div className="w-[40px]" />
       </div>
     </header>

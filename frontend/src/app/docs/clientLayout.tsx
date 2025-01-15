@@ -1,5 +1,4 @@
 "use client";
-
 import { Header, Sidebar, DocContent } from "@/components/ui";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { DirectoryTree } from "@/lib/types";
@@ -12,8 +11,11 @@ const ClientDocsLayout = ({
   children: ReactNode;
   tree: DirectoryTree;
 }) => {
-  const [isCollapsed, setIsCollapsed] = useState(false);
   const isMobile = useIsMobile();
+  const [isCollapsed, setIsCollapsed] = useState(() => {
+    if (typeof window === 'undefined') return true;
+    return window.innerWidth < 768;
+  });
 
   const toggleSidebar = useCallback(() => {
     setIsCollapsed((prev) => !prev);
