@@ -62,36 +62,41 @@ const components = {
       {children}
     </blockquote>
   ),
-  // TODO: add typing like above instead of type any
-  code: ({ children, language }: any) => (
+  code: ({ children, language }: { children: ReactNode; language: string }) => (
     <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto my-4">
       <code className={language ? `language-${language}` : ""}>{children}</code>
     </pre>
   ),
-  fence: ({ children, language }: any) => (
+  fence: ({
+    children,
+    language,
+  }: {
+    children: ReactNode;
+    language: string;
+  }) => (
     <pre className="bg-gray-100 p-4 rounded-lg overflow-x-auto my-4">
       <code className={language ? `language-${language}` : ""}>{children}</code>
     </pre>
   ),
   hr: () => <hr className="my-8 border-t border-gray-200" />,
-  table: ({ children }: any) => (
+  table: ({ children }: { children: ReactNode }) => (
     <div className="overflow-x-auto my-4">
       <table className="min-w-full divide-y divide-gray-200">{children}</table>
     </div>
   ),
-  thead: ({ children }: any) => (
+  thead: ({ children }: { children: ReactNode }) => (
     <thead className="bg-gray-50">{children}</thead>
   ),
-  tbody: ({ children }: any) => (
+  tbody: ({ children }: { children: ReactNode }) => (
     <tbody className="divide-y divide-gray-200">{children}</tbody>
   ),
-  tr: ({ children }: any) => <tr>{children}</tr>,
-  th: ({ children }: any) => (
+  tr: ({ children }: { children: ReactNode }) => <tr>{children}</tr>,
+  th: ({ children }: { children: ReactNode }) => (
     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
       {children}
     </th>
   ),
-  td: ({ children }: any) => (
+  td: ({ children }: { children: ReactNode }) => (
     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
       {children}
     </td>

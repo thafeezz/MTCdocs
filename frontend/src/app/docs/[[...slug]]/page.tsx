@@ -3,7 +3,7 @@ import React from "react";
 import { notFound } from "next/navigation";
 
 interface DocumentProps {
-  params: { slug?: string[] };
+  params: Promise<{ slug?: string[] }>;
 }
 
 const Document = async ({ params }: DocumentProps) => {

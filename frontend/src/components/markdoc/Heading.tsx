@@ -1,8 +1,8 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { JSX } from "react";
 
 type HeadingProps = {
-  children: any;
+  children: ReactNode;
   level: number;
 };
 

@@ -1,5 +1,7 @@
+import { ReactNode } from "react";
+
 type CalloutProps = {
-  children: any;
+  children: ReactNode;
   title: string;
 };
 
