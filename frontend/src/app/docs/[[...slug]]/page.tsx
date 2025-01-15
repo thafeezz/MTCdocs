@@ -1,7 +1,7 @@
 import { getMarkdownContent } from "@/lib/markdoc";
 import React from "react";
 import { notFound } from "next/navigation";
-import { kanit } from "../../../../styles/fonts";
+import { inter } from "../../../../styles/fonts";
 
 interface DocumentProps {
   params: Promise<{ slug?: string[] }>;
@@ -20,7 +20,7 @@ const Document = async ({ params }: DocumentProps) => {
 
     return (
       <div
-        className={`${kanit.className} max-w-6xl mx-auto prose prose-invert prose-blue`}
+        className={`${inter.className} max-w-6xl mx-auto prose prose-invert prose-blue`}
       >
         {content}
       </div>

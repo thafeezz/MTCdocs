@@ -19,11 +19,11 @@ export const Sidebar = ({
   onNavigate,
 }: SidebarProps) => {
   return (
-    <aside className="h-full bg-gradient-to-l from-themegray to-themegray border-r-2 border-offwhite flex flex-col overflow-y-auto">
+    <aside className="h-full bg-[hsl(var(--sidebar-bg))] border-gradient-right">
       <div className="flex justify-end p-3 flex-shrink-0">
         <button
           onClick={onToggle}
-          className={`${pressStart.className} text-offwhite hover:bg-gray-900 rounded text-xs`}
+          className={`${pressStart.className} text-muted-foreground hover:text-foreground transition-colors duration-200 py-1 rounded text-xs`}
         >
           {isCollapsed ? ">" : "<"}
         </button>
@@ -52,27 +52,12 @@ interface DirectoryItemProps {
 }
 
 const DirectoryItem = ({ item, onNavigate, level = 0 }: DirectoryItemProps) => {
-  const pathname = usePathname(); // Add this hook to get current path
-
-  const getCleanPath = (itemPath: string): string => {
-    const segments = itemPath
-      .split("/")
-      .filter(
-        (segment) => segment && segment !== "content" && segment !== "docs"
-      )
-      .map((segment) => segment.replace(/\.md$/, ""));
-
-    if (item.type === "directory") {
-      return `/docs/${segments.join("/")}`;
-    }
-    return `/docs/${segments.join("/")}`;
-  };
-
+  const pathname = usePathname();
   const urlPath = getCleanPath(item.path);
   const isActive = pathname === urlPath;
 
   return (
-    <li className={`ml-${level * 2} text-white`}>
+    <li className={`ml-${level * 2}`}>
       <Link
         href={urlPath}
         className={`${pressStart.className}`}
@@ -80,8 +65,10 @@ const DirectoryItem = ({ item, onNavigate, level = 0 }: DirectoryItemProps) => {
       >
         <Button
           className={`text-xs font-bold ${
-            isActive ? "text-maize" : "text-white"
-          }`}
+            isActive
+              ? "text-[#FFCB05]"
+              : "text-[hsl(var(--nav-muted))] hover:text-[hsl(var(--nav-foreground))]"
+          } transition-colors duration-200`}
           variant="link"
         >
           {item.name}
@@ -102,6 +89,14 @@ const DirectoryItem = ({ item, onNavigate, level = 0 }: DirectoryItemProps) => {
       )}
     </li>
   );
+};
+
+const getCleanPath = (itemPath: string): string => {
+  const segments = itemPath
+    .split("/")
+    .filter((segment) => segment && segment !== "content" && segment !== "docs")
+    .map((segment) => segment.replace(/\.md$/, ""));
+  return `/docs/${segments.join("/")}`;
 };
 
 export default Sidebar;

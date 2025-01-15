@@ -1,21 +1,20 @@
-import { Jersey_15, Lato, Kanit, Press_Start_2P } from "next/font/google";
+import { Inter } from "next/font/google";
+import { Jersey_15 } from "next/font/google";
+import { Press_Start_2P } from "next/font/google";
+
+export const inter = Inter({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const jerseyOne = Jersey_15({
-  weight: "400",
   subsets: ["latin"],
+  weight: "400",
+  display: "swap",
 });
 
 export const pressStart = Press_Start_2P({
-  weight: "400",
   subsets: ["latin"],
-});
-
-export const lato = Lato({
   weight: "400",
-  subsets: ["latin"],
-});
-
-export const kanit = Kanit({
-  weight: "400",
-  subsets: ["latin"],
+  display: "swap",
 });

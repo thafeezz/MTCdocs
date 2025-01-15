@@ -3,51 +3,51 @@ import { jerseyOne } from "../../../styles/fonts";
 import { Button } from "./Button";
 import { IoHome } from "react-icons/io5";
 import { TfiMenu } from "react-icons/tfi";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface HeaderProps {
   toggleSidebar: () => void;
   isMobile: boolean;
 }
 
-export const Header = ({
-  toggleSidebar,
-  isMobile,
-}: HeaderProps) => {
+export const Header = ({ toggleSidebar, isMobile }: HeaderProps) => {
   return (
     <header className="sticky z-30 top-0 w-full">
-      <div className="flex items-center justify-between px-4 h-[80px] border-b-2 bg-gradient-to-b from-themegray/80 to-transparent">
-        {isMobile ? (
-          <Button
-            variant="ghost"
-            size="icon"
-            className="text-offwhite hover:text-maize"
-            onClick={toggleSidebar}
-          >
-            <TfiMenu size={24} />
-          </Button>
-        ) : (
-          <Link href="/">
+      <div className="flex items-center justify-between px-4 h-[60px] border-b border-border bg-[hsl(var(--header-bg))] backdrop-blur supports-[backdrop-filter]:bg-[hsl(var(--header-bg))]/95">
+        <div className="flex items-center gap-2">
+          {isMobile ? (
             <Button
               variant="ghost"
               size="icon"
-              className="text-offwhite hover:text-maize"
+              className="text-muted-foreground hover:text-foreground"
+              onClick={toggleSidebar}
             >
-              <IoHome size={24} />
+              <TfiMenu size={20} />
             </Button>
-          </Link>
-        )}
+          ) : (
+            <Link href="/">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-muted-foreground hover:text-foreground"
+              >
+                <IoHome size={20} />
+              </Button>
+            </Link>
+          )}
+        </div>
 
-        <Button>
-          <Link href="/docs">
-            <div className={`${jerseyOne.className}`}>
-              <span className="text-maize text-[40px]">MTC</span>
-              <span className="text-offwhite text-[40px]">/</span>
-              <span className="text-umblue text-[40px]">docs</span>
-            </div>
-          </Link>
-        </Button>
+        <Link href="/docs">
+          <div className={`${jerseyOne.className}`}>
+            <span className="text-maize text-[32px]">MTC</span>
+            <span className="text-foreground text-[32px]">/</span>
+            <span className="text-umblue text-[32px]">docs</span>
+          </div>
+        </Link>
 
-        <div className="w-10" /> {/* Spacer to maintain center alignment */}
+        <div className="flex items-center">
+          <ThemeToggle />
+        </div>
       </div>
     </header>
   );

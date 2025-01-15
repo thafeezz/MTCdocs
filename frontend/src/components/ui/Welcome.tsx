@@ -6,16 +6,22 @@ import { useIsMobile } from "@/hooks/useIsMobile";
 export const WelcomeTitle = () => {
   const [text, setText] = useState("");
   const fullText = "MTC/docs";
-  const isMobile = useIsMobile();
+  const { isMobile } = useIsMobile();
 
   useEffect(() => {
-    if (text.length < fullText.length) {
-      const timeout = setTimeout(() => {
-        setText(fullText.slice(0, text.length + 1));
-      }, 200);
-      return () => clearTimeout(timeout);
-    }
-  }, [text]);
+    setText("");
+
+    const typeText = async () => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+
+      for (let i = 0; i <= fullText.length; i++) {
+        await new Promise((resolve) => setTimeout(resolve, 200));
+        setText(fullText.slice(0, i));
+      }
+    };
+
+    typeText();
+  }, []);
 
   return (
     <div
@@ -26,7 +32,7 @@ export const WelcomeTitle = () => {
       <h3
         className={`${pressStart.className} ${
           isMobile ? "text-xs" : "text-lg"
-        } text-offwhite opacity-0 animate-fade-in-delay mb-2 text-center`}
+        } text-foreground opacity-0 animate-fade-in-welcome mb-2 text-center`}
       >
         Welcome to
       </h3>
@@ -35,7 +41,7 @@ export const WelcomeTitle = () => {
           className={`${jerseyOne.className} text-7xl sm:text-7xl md:text-8xl lg:text-9xl flex`}
         >
           <span className="text-maize">{text.slice(0, 3)}</span>
-          <span className="text-offwhite">{text.slice(3, 4)}</span>
+          <span className="text-foreground">{text.slice(3, 4)}</span>
           <span className="text-umblue">{text.slice(4)}</span>
           <span className="w-2 h-16 sm:h-20 md:h-24 lg:h-32 bg-maize animate-blink ml-2"></span>
         </h1>
@@ -43,7 +49,7 @@ export const WelcomeTitle = () => {
       <h3
         className={`${pressStart.className} ${
           isMobile ? "text-xs" : "text-base"
-        } text-offwhite opacity-0 animate-fade-in-delay mt-4 text-center`}
+        } text-foreground opacity-0 animate-fade-in-delay mt-4 text-center`}
       >
         at the University of Michigan
       </h3>

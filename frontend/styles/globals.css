@@ -2,44 +2,59 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 240 5.3% 26.1%;
-    --sidebar-primary: 240 5.9% 10%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 240 4.8% 95.9%;
-    --sidebar-accent-foreground: 240 5.9% 10%;
-    --sidebar-border: 220 13% 91%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Light theme - vintage paper look */
+    --header-bg: 40 30% 95%; /* Header background */
+    --sidebar-bg: 40 30% 95%; /* Sidebar matches header */
+    --background: 40 30% 96%; /* Content slightly lighter */
+    --foreground: 25 20% 8%; /* Warm dark text */
+
+    --primary: 25 20% 8%;
+    --primary-foreground: 40 30% 98%;
+
+    --secondary: 35 25% 95%; /* Slightly darker paper for sections */
+    --secondary-foreground: 25 20% 8%;
+
+    --muted: 35 20% 92%; /* Muted vintage tone */
+    --muted-foreground: 25 15% 35%;
+
+    --accent: 217 91% 24%; /* Accent color (UMBlue) */
+    --accent-foreground: 40 30% 98%;
+
+    --border: 35 25% 88%; /* Warm border color */
+
+    --radius: 0.5rem;
+
+    --nav-foreground: 25 20% 8%; /* Dark text for nav */
+    --nav-muted: 25 15% 25%; /* Slightly lighter for muted nav text */
+    --nav-hover: 25 20% 4%; /* Even darker on hover */
   }
+
   .dark {
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Rich black dark theme with subtle blue */
+    --header-bg: 222 25% 5%; /* Darker header */
+    --sidebar-bg: 222 25% 5%; /* Sidebar matches header */
+    --background: 222 25% 7%; /* Content slightly lighter */
+    --foreground: 0 0% 98%; /* Clean white text */
+
+    --primary: 0 0% 98%;
+    --primary-foreground: 222 25% 7%;
+
+    --secondary: 223 25% 10%; /* Slightly lighter rich black */
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 223 25% 12%;
+    --muted-foreground: 215 20% 65%;
+
+    --accent: 45 100% 50%; /* Maize accent for dark mode */
+    --accent-foreground: 222 25% 7%;
+
+    --border: 222 25% 12%;
+
+    --nav-foreground: 0 0% 98%; /* Bright white for nav */
+    --nav-muted: 0 0% 80%; /* Slightly dimmed white for muted nav text */
+    --nav-hover: 0 0% 100%; /* Pure white on hover */
   }
 }
 
@@ -49,5 +64,91 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  /* Apply header background and border */
+  header {
+    @apply bg-[hsl(var(--header-bg))] border-b border-border;
+  }
+
+  /* Apply sidebar background and border */
+  aside {
+    @apply bg-[hsl(var(--sidebar-bg))] border-r border-border;
+  }
+}
+
+/* Prose styles for content */
+.prose {
+  --tw-prose-body: hsl(var(--foreground));
+  --tw-prose-headings: hsl(var(--foreground));
+  --tw-prose-lead: hsl(var(--foreground));
+  --tw-prose-links: hsl(var(--accent));
+  --tw-prose-bold: hsl(var(--foreground));
+  --tw-prose-counters: hsl(var(--foreground));
+  --tw-prose-bullets: hsl(var(--foreground));
+  --tw-prose-hr: hsl(var(--border));
+  --tw-prose-quotes: hsl(var(--foreground));
+  --tw-prose-quote-borders: hsl(var(--border));
+  --tw-prose-captions: hsl(var(--muted-foreground));
+  --tw-prose-code: hsl(var(--foreground));
+  --tw-prose-pre-code: hsl(var(--foreground));
+  --tw-prose-pre-bg: hsl(var(--secondary));
+  --tw-prose-th-borders: hsl(var(--border));
+  --tw-prose-td-borders: hsl(var(--border));
+}
+
+.prose-invert {
+  --tw-prose-body: hsl(var(--foreground));
+  --tw-prose-headings: hsl(var(--foreground));
+  --tw-prose-lead: hsl(var(--foreground));
+  --tw-prose-links: hsl(var(--accent));
+  --tw-prose-bold: hsl(var(--foreground));
+  --tw-prose-counters: hsl(var(--foreground));
+  --tw-prose-bullets: hsl(var(--foreground));
+  --tw-prose-hr: hsl(var(--border));
+  --tw-prose-quotes: hsl(var(--foreground));
+  --tw-prose-quote-borders: hsl(var(--border));
+  --tw-prose-captions: hsl(var(--muted-foreground));
+  --tw-prose-code: hsl(var(--foreground));
+  --tw-prose-pre-code: hsl(var(--foreground));
+  --tw-prose-pre-bg: hsl(var(--secondary));
+  --tw-prose-th-borders: hsl(var(--border));
+  --tw-prose-td-borders: hsl(var(--border));
+}
+
+@layer utilities {
+  @keyframes fade-in {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  .animate-fade-in-welcome {
+    animation: fade-in 1s ease-out 0.5s forwards;  /* 1s delay before welcome text */
+  }
+
+  .animate-fade-in-delay {
+    animation: fade-in 1s ease-out 1.5s forwards;  /* Delay for bottom text */
+  }
+
+  .animate-blink {
+    animation: blink 2s steps(1) infinite;
   }
 }

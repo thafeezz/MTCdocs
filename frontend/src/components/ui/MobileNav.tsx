@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { DirectoryTree } from "@/lib/types";
 import { Button } from "./Button";
 import { pressStart } from "../../../styles/fonts";
@@ -34,18 +34,20 @@ export const MobileNav = ({ tree, onNavigate }: MobileNavProps) => {
   const getCleanPath = (itemPath: string): string => {
     const segments = itemPath
       .split("/")
-      .filter(segment => segment && segment !== "content" && segment !== "docs")
-      .map(segment => segment.replace(/\.md$/, ""));
+      .filter(
+        (segment) => segment && segment !== "content" && segment !== "docs"
+      )
+      .map((segment) => segment.replace(/\.md$/, ""));
     return `/docs/${segments.join("/")}`;
   };
 
   return (
-    <div className="flex flex-col h-full bg-gradient-to-l from-themegray to-themegray">
+    <div className="flex flex-col h-full bg-[hsl(var(--sidebar-bg))] border-gradient-right">
       {currentPath.length > 0 && (
-        <div className="flex-shrink-0 border-b border-offwhite">
+        <div className="border-gradient-bottom">
           <button
             onClick={navigateBack}
-            className={`flex items-center gap-2 p-4 text-sm text-offwhite hover:bg-gray-900 w-full ${pressStart.className}`}
+            className={`flex items-center gap-2 p-4 text-sm text-muted-foreground hover:text-foreground ${pressStart.className}`}
           >
             <ChevronLeft size={20} />
             <span>Back</span>
@@ -54,7 +56,7 @@ export const MobileNav = ({ tree, onNavigate }: MobileNavProps) => {
       )}
 
       <div className="flex-1 overflow-y-auto">
-        <nav className="pl-6"> 
+        <nav className="pl-6">
           <ul className="space-y-1 py-4">
             {currentNode.children?.map((item) => {
               const urlPath = getCleanPath(item.path);
@@ -66,7 +68,7 @@ export const MobileNav = ({ tree, onNavigate }: MobileNavProps) => {
                   {hasChildren ? (
                     <button
                       onClick={() => navigateForward(item)}
-                      className={`flex items-center justify-between text-xs ${pressStart.className} text-offwhite hover:bg-gray-900 rounded py-2 px-4 w-full`}
+                      className={`flex items-center justify-between text-xs ${pressStart.className} text-muted-foreground hover:text-foreground transition-colors duration-200 rounded py-2 px-4 w-full`}
                     >
                       <span>{item.name}/</span>
                       <ChevronRight size={16} />
@@ -79,8 +81,10 @@ export const MobileNav = ({ tree, onNavigate }: MobileNavProps) => {
                     >
                       <Button
                         className={`text-xs font-bold text-left justify-start ${
-                          isActive ? 'text-maize' : 'text-white'
-                        }`}
+                          isActive
+                            ? "text-maize"
+                            : "text-muted-foreground hover:text-foreground"
+                        } transition-colors duration-200`}
                         variant="link"
                       >
                         {item.name}
