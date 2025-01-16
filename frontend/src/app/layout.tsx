@@ -1,4 +1,5 @@
 import { ThemeProvider } from "@/components/ui/providers";
+import { Analytics } from "@vercel/analytics/react";
 import "../../styles/globals.css";
 
 export default function RootLayout({
@@ -8,7 +9,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
       <body>
         <ThemeProvider
           attribute="class"
@@ -17,6 +17,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
