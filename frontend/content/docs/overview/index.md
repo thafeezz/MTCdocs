@@ -13,7 +13,7 @@ title: Overview
 We built this platform in hopes of achieving a few key goals:
 
 1. A resource for current and future (and even past) students
-2. An guided intro to CS (and hopefully other majors) at UMich
+2. A guided intro to CS (and hopefully other majors) at UMich
 3. Put everything down, in one place
 4. A long-lasting, extensible, and collaborative learning platform for the community
 

@@ -21,6 +21,6 @@ Authoring docs will help other students get the knowledge they otherwise might n
 
 ### Where do I start?
 
-If you don't know how to organize within MTCdocs or aren't familiar with GitHub (learn more about GitHub [here](/docs/library/git)), write a page (markdown) and email it to me (thafeez@umich.edu). I'll take care of it from there.
+If you don't know how to organize within MTC/docs or aren't familiar with GitHub (learn more about GitHub [here](/docs/library/git)), write a page (markdown) and email it to me (<thafeez@umich.edu>). I'll take care of it from there.
 
 The hope is that contributions will become easier as the platform develops iA, but for now, please bear with us.

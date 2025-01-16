@@ -1,3 +1,3 @@
 # Git
 
-{% note %} coming soon iA {%/note%}
+{% note %} 🚧 coming soon iA {%/note%}
