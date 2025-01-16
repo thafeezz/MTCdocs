@@ -9,3 +9,4 @@ If you're interested in working on some of these (it will look good as a resume 
 3. breadcrumb/in-page nav
 4. search
 5. chatbot style search
+6. feedback on the bottom of pages (see langchain docs)
