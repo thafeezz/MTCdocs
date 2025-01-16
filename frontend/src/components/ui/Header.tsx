@@ -3,6 +3,7 @@ import { jerseyOne } from "../../../styles/fonts";
 import { Button } from "./Button";
 import { IoHome } from "react-icons/io5";
 import { TfiMenu } from "react-icons/tfi";
+import { FaGithub } from "react-icons/fa";
 import { ThemeToggle } from "./ThemeToggle";
 
 interface HeaderProps {
@@ -36,7 +37,6 @@ export const Header = ({ toggleSidebar, isMobile }: HeaderProps) => {
             </Link>
           )}
         </div>
-
         <Link href="/docs">
           <div className={`${jerseyOne.className}`}>
             <span className="text-maize text-[32px]">MTC</span>
@@ -44,8 +44,15 @@ export const Header = ({ toggleSidebar, isMobile }: HeaderProps) => {
             <span className="text-umblue text-[32px]">docs</span>
           </div>
         </Link>
-
-        <div className="flex items-center">
+        <div className="flex items-center gap-2">
+          <Link
+            href="https://github.com/thafeezz/MTCdocs"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-muted-foreground hover:text-maize transition-colors"
+          >
+            <FaGithub size={20} />
+          </Link>
           <ThemeToggle />
         </div>
       </div>

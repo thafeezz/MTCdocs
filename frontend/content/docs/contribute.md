@@ -3,9 +3,9 @@
 ## Interested in MTC or contributing MTC/docs?
 
 Reach out to MTC-UMich leadership:  
-Co-President: Ihsaan Yasin (iyasin@umich.edu)  
-Co-President: Arriyan Raza (aaraza@umich.edu)  
-VP Education: Talha Hafeez (thafeez@umich.edu)
+Co-President: Ihsaan Yasin (<iyasin@umich.edu>)  
+Co-President: Arriyan Raza (<aaraza@umich.edu>)  
+VP Education: Talha Hafeez (<thafeez@umich.edu>)
 
 ### Contribute to MTC/docs
 

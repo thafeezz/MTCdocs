@@ -6,7 +6,7 @@ export const navConfig = {
     "docs",
     "overview",
     "lib",
-    "curriculum",
+    "c8m",
     "contribute",
     "contact",
     "hello",
