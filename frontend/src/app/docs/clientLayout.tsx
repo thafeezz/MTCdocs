@@ -61,21 +61,12 @@ const ClientDocsLayout = ({
 
       <div className="flex flex-1 overflow-hidden">
         {!isMobile && (
-          <div
-            className={`
-              ${isCollapsed ? "w-10" : "w-60"}
-              transition-all duration-300
-              flex-shrink-0
-              border-r border-border
-            `}
-          >
-            <Sidebar
-              tree={tree}
-              isCollapsed={isCollapsed}
-              onToggle={toggleSidebar}
-              onNavigate={handleNavigate}
-            />
-          </div>
+          <Sidebar
+            tree={tree}
+            isCollapsed={isCollapsed}
+            onToggle={toggleSidebar}
+            onNavigate={handleNavigate}
+          />
         )}
 
         {isMobile && !isCollapsed && (
@@ -88,9 +79,7 @@ const ClientDocsLayout = ({
 
         <div className="flex-1 overflow-y-auto">
           <div className="min-h-full flex">
-            <div className="flex-1 px-16 py-8">
-              <DocContent>{children}</DocContent>
-            </div>
+            <DocContent>{children}</DocContent>
             {!isMobile && (
               <div className="w-80 flex-shrink-0 px-4 py-8">
                 <TableOfContents key={pathname} />

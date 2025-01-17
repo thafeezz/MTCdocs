@@ -20,8 +20,19 @@ export const Sidebar = ({
   onNavigate,
 }: SidebarProps) => {
   return (
-    <aside className="h-full bg-[hsl(var(--sidebar-bg))] border-gradient-right flex flex-col">
-      <div className="flex justify-end p-3 flex-shrink-0">
+    <div
+      className={`
+        ${isCollapsed ? "w-10" : "w-60"}
+        transition-all duration-300
+        flex-shrink-0
+        h-full
+        bg-[hsl(var(--sidebar-bg))]
+        border-r border-border
+        border-gradient-right 
+        flex flex-col
+      `}
+    >
+      <div className="flex justify-end pt-3 pr-3 flex-shrink-0">
         <button
           onClick={onToggle}
           className={`${pressStart.className} text-muted-foreground hover:text-foreground transition-colors duration-200 py-1 rounded text-xs`}
@@ -31,7 +42,7 @@ export const Sidebar = ({
       </div>
 
       <nav className="flex-1 overflow-y-auto">
-        <ul className="space-y-1 p-4">
+        <ul className="space-y-1 px-4">
           {!isCollapsed &&
             tree.children?.map((item) => (
               <DirectoryItem
@@ -42,7 +53,7 @@ export const Sidebar = ({
             ))}
         </ul>
       </nav>
-    </aside>
+    </div>
   );
 };
 
@@ -68,12 +79,12 @@ const DirectoryItem = ({ item, onNavigate, level = 0 }: DirectoryItemProps) => {
   const hasChildren = item.children && item.children.length > 0;
 
   return (
-    <li className={`ml-${level * 2}`}>
-      <div className="flex items-center gap-1">
+    <li>
+      <div className="flex items-center">
         {hasChildren && (
           <button
             onClick={() => setIsExpanded(!isExpanded)}
-            className="p-1 text-muted-foreground hover:text-foreground"
+            className="text-muted-foreground hover:text-foreground"
           >
             {isExpanded ? (
               <ChevronDown className="h-4 w-4" />
@@ -84,7 +95,7 @@ const DirectoryItem = ({ item, onNavigate, level = 0 }: DirectoryItemProps) => {
         )}
         <Link
           href={urlPath}
-          className={`${pressStart.className} flex-1`}
+          className={`${pressStart.className} flex-1 ${!hasChildren && "ml-4"}`}
           onClick={onNavigate}
         >
           <Button
@@ -101,7 +112,7 @@ const DirectoryItem = ({ item, onNavigate, level = 0 }: DirectoryItemProps) => {
         </Link>
       </div>
       {hasChildren && isExpanded && (
-        <ul className="ml-4 mt-1 space-y-1">
+        <ul className="ml-4">
           {item.children.map((child) => (
             <DirectoryItem
               key={child.path}

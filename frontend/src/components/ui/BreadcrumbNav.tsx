@@ -20,12 +20,12 @@ export const Breadcrumb = () => {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="flex items-center space-x-2 mb-6 text-sm"
+      className="flex flex-wrap items-center gap-2 mb-6 text-sm"
     >
       {segments.map((segment, index) => (
         <React.Fragment key={segment.path}>
           {index > 0 && (
-            <ChevronRight className="h-4 w-4 text-muted-foreground" />
+            <ChevronRight className="h-4 w-4 text-muted-foreground flex-shrink-0" />
           )}
           <Link
             href={`/${segments
