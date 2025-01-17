@@ -3,13 +3,13 @@ import fs from "fs";
 
 export const navConfig = {
   order: [
-    "docs",
+    
     "overview",
     "lib",
     "c8m",
     "contribute",
     "contact",
-    "hello",
+    "support",
     "todo",
   ],
   // Define sections that should show their children by default

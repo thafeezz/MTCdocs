@@ -4,57 +4,57 @@
 
 @layer base {
   :root {
-    /* Light theme - vintage paper look */
-    --header-bg: 40 30% 95%; /* Header background */
-    --sidebar-bg: 40 30% 95%; /* Sidebar matches header */
-    --background: 40 30% 96%; /* Content slightly lighter */
-    --foreground: 25 20% 8%; /* Warm dark text */
+    /* Light theme - warm vintage paper look */
+    --header-bg: 43 35% 94%;     /* Warmer header */
+    --sidebar-bg: 43 35% 94%;    /* Match header */
+    --background: 43 38% 97%;    /* Warmer content with yellow tint */
+    --foreground: 35 30% 15%;    /* Warmer brown text */
 
-    --primary: 25 20% 8%;
-    --primary-foreground: 40 30% 98%;
+    --primary: 35 30% 15%;
+    --primary-foreground: 43 38% 97%;
 
-    --secondary: 35 25% 95%; /* Slightly darker paper for sections */
-    --secondary-foreground: 25 20% 8%;
+    --secondary: 40 35% 94%;     /* Warmer sections */
+    --secondary-foreground: 35 30% 15%;
 
-    --muted: 35 20% 92%; /* Muted vintage tone */
-    --muted-foreground: 25 15% 35%;
+    --muted: 40 25% 90%;        /* Warmer muted tone */
+    --muted-foreground: 35 25% 35%;
 
-    --accent: 217 91% 24%; /* Accent color (UMBlue) */
-    --accent-foreground: 40 30% 98%;
+    --accent: 217 91% 24%;      /* UMBlue unchanged */
+    --accent-foreground: 43 35% 98%;
 
-    --border: 35 25% 88%; /* Warm border color */
+    --border: 40 30% 86%;       /* Warmer borders */
 
     --radius: 0.5rem;
 
-    --nav-foreground: 25 20% 8%; /* Dark text for nav */
-    --nav-muted: 25 15% 25%; /* Slightly lighter for muted nav text */
-    --nav-hover: 25 20% 4%; /* Even darker on hover */
+    --nav-foreground: 35 30% 15%;    /* Warmer nav text */
+    --nav-muted: 35 25% 25%;         /* Warmer muted nav */
+    --nav-hover: 35 30% 8%;          /* Warmer hover */
   }
 
   .dark {
-    /* Rich black dark theme with subtle blue */
-    --header-bg: 222 25% 5%; /* Darker header */
-    --sidebar-bg: 222 25% 5%; /* Sidebar matches header */
-    --background: 222 25% 7%; /* Content slightly lighter */
-    --foreground: 0 0% 98%; /* Clean white text */
+    /* Dark theme unchanged */
+    --header-bg: 222 25% 5%;
+    --sidebar-bg: 222 25% 5%;
+    --background: 222 25% 7%;
+    --foreground: 0 0% 98%;
 
     --primary: 0 0% 98%;
     --primary-foreground: 222 25% 7%;
 
-    --secondary: 223 25% 10%; /* Slightly lighter rich black */
+    --secondary: 223 25% 10%;
     --secondary-foreground: 0 0% 98%;
 
     --muted: 223 25% 12%;
     --muted-foreground: 215 20% 65%;
 
-    --accent: 45 100% 50%; /* Maize accent for dark mode */
+    --accent: 45 100% 50%;
     --accent-foreground: 222 25% 7%;
 
     --border: 222 25% 12%;
 
-    --nav-foreground: 0 0% 98%; /* Bright white for nav */
-    --nav-muted: 0 0% 80%; /* Slightly dimmed white for muted nav text */
-    --nav-hover: 0 0% 100%; /* Pure white on hover */
+    --nav-foreground: 0 0% 98%;
+    --nav-muted: 0 0% 80%;
+    --nav-hover: 0 0% 100%;
   }
 }
 
@@ -66,12 +66,10 @@
     @apply bg-background text-foreground;
   }
 
-  /* Apply header background and border */
   header {
     @apply bg-[hsl(var(--header-bg))] border-b border-border;
   }
 
-  /* Apply sidebar background and border */
   aside {
     @apply bg-[hsl(var(--sidebar-bg))] border-r border-border;
   }
@@ -79,29 +77,29 @@
 
 /* Prose styles for content */
 .prose {
-  --tw-prose-body: hsl(var(--foreground));
-  --tw-prose-headings: hsl(var(--foreground));
-  --tw-prose-lead: hsl(var(--foreground));
-  --tw-prose-links: #185ae7; /* Changed to Tailwind's blue-600 */
-  --tw-prose-bold: hsl(var(--foreground));
-  --tw-prose-counters: hsl(var(--foreground));
-  --tw-prose-bullets: hsl(var(--foreground));
-  --tw-prose-hr: hsl(var(--border));
-  --tw-prose-quotes: hsl(var(--foreground));
-  --tw-prose-quote-borders: hsl(var(--border));
-  --tw-prose-captions: hsl(var(--muted-foreground));
-  --tw-prose-code: hsl(var(--foreground));
-  --tw-prose-pre-code: hsl(var(--foreground));
-  --tw-prose-pre-bg: hsl(var(--secondary));
-  --tw-prose-th-borders: hsl(var(--border));
-  --tw-prose-td-borders: hsl(var(--border));
+  --tw-prose-body: hsl(35 30% 15%);       /* Warmer text */
+  --tw-prose-headings: hsl(35 30% 12%);   /* Slightly darker warm headers */
+  --tw-prose-lead: hsl(35 30% 15%);
+  --tw-prose-links: #185ae7;              /* Links unchanged */
+  --tw-prose-bold: hsl(35 30% 12%);
+  --tw-prose-counters: hsl(35 30% 15%);
+  --tw-prose-bullets: hsl(35 30% 15%);
+  --tw-prose-hr: hsl(40 30% 86%);
+  --tw-prose-quotes: hsl(35 30% 15%);
+  --tw-prose-quote-borders: hsl(40 30% 86%);
+  --tw-prose-captions: hsl(35 25% 35%);
+  --tw-prose-code: hsl(35 30% 15%);
+  --tw-prose-pre-code: hsl(35 30% 15%);
+  --tw-prose-pre-bg: hsl(40 35% 94%);
+  --tw-prose-th-borders: hsl(40 30% 86%);
+  --tw-prose-td-borders: hsl(40 30% 86%);
 }
 
 .prose-invert {
   --tw-prose-body: hsl(var(--foreground));
   --tw-prose-headings: hsl(var(--foreground));
   --tw-prose-lead: hsl(var(--foreground));
-  --tw-prose-links: #2e5ff4; /* Changed to Tailwind's blue-400 for better contrast in dark mode */
+  --tw-prose-links: #2e5ff4;
   --tw-prose-bold: hsl(var(--foreground));
   --tw-prose-counters: hsl(var(--foreground));
   --tw-prose-bullets: hsl(var(--foreground));
@@ -141,11 +139,11 @@
   }
 
   .animate-fade-in-welcome {
-    animation: fade-in 1s ease-out 0.5s forwards; /* 1s delay before welcome text */
+    animation: fade-in 1s ease-out 0.5s forwards;
   }
 
   .animate-fade-in-delay {
-    animation: fade-in 1s ease-out 1.5s forwards; /* Delay for bottom text */
+    animation: fade-in 1s ease-out 1.5s forwards;
   }
 
   .animate-blink {
