@@ -2,11 +2,11 @@
 
 Welcome to the MTC/docs, a platform hosting all of MTC's educational material at the University of Michigan.
 
-{%note%}🚧 Quick nav menu coming soon{%/note%}
+{%alert%} Quick nav menu coming soon{%/alert%}
 
 # What is MTC/docs?
 
-{%callout%}To read more about the thought process behind this platform (and why it's not just a notion doc), read the thesis [here](/docs/overview/thesis).{%/callout%}
+{%tip%}To read more about the thought process behind this platform (and why it's not just a notion doc), read the thesis [here](/docs/overview/thesis).{%/tip%}
 
 ### Scale learning at UMich
 

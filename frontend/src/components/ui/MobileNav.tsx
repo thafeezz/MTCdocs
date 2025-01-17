@@ -34,11 +34,9 @@ export const MobileNav = ({ tree, onNavigate }: MobileNavProps) => {
   const getCleanPath = (itemPath: string): string => {
     const segments = itemPath
       .split("/")
-      .filter(
-        (segment) => segment && segment !== "content" && segment !== "docs"
-      )
+      .filter((segment) => segment && segment !== "content")
       .map((segment) => segment.replace(/\.md$/, ""));
-    return `/docs/${segments.join("/")}`;
+    return `/${segments.join("/")}`;
   };
 
   return (
@@ -58,6 +56,23 @@ export const MobileNav = ({ tree, onNavigate }: MobileNavProps) => {
       <div className="flex-1 overflow-y-auto">
         <nav className="pl-6">
           <ul className="space-y-1 py-4">
+            {currentNode !== tree && (
+              <li className="flex items-center">
+                <Link
+                  href={getCleanPath(currentNode.path)}
+                  onClick={onNavigate}
+                  className={`${pressStart.className} w-full`}
+                >
+                  <Button
+                    className={`text-xs font-bold text-left justify-start text-muted-foreground hover:text-foreground transition-colors duration-200`}
+                    variant="link"
+                  >
+                    home
+                  </Button>
+                </Link>
+              </li>
+            )}
+
             {currentNode.children?.map((item) => {
               const urlPath = getCleanPath(item.path);
               const isActive = pathname === urlPath;

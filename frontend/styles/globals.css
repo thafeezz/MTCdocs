@@ -82,7 +82,7 @@
   --tw-prose-body: hsl(var(--foreground));
   --tw-prose-headings: hsl(var(--foreground));
   --tw-prose-lead: hsl(var(--foreground));
-  --tw-prose-links: hsl(var(--accent));
+  --tw-prose-links: #185ae7; /* Changed to Tailwind's blue-600 */
   --tw-prose-bold: hsl(var(--foreground));
   --tw-prose-counters: hsl(var(--foreground));
   --tw-prose-bullets: hsl(var(--foreground));
@@ -101,7 +101,7 @@
   --tw-prose-body: hsl(var(--foreground));
   --tw-prose-headings: hsl(var(--foreground));
   --tw-prose-lead: hsl(var(--foreground));
-  --tw-prose-links: hsl(var(--accent));
+  --tw-prose-links: #2e5ff4; /* Changed to Tailwind's blue-400 for better contrast in dark mode */
   --tw-prose-bold: hsl(var(--foreground));
   --tw-prose-counters: hsl(var(--foreground));
   --tw-prose-bullets: hsl(var(--foreground));
@@ -141,11 +141,11 @@
   }
 
   .animate-fade-in-welcome {
-    animation: fade-in 1s ease-out 0.5s forwards;  /* 1s delay before welcome text */
+    animation: fade-in 1s ease-out 0.5s forwards; /* 1s delay before welcome text */
   }
 
   .animate-fade-in-delay {
-    animation: fade-in 1s ease-out 1.5s forwards;  /* Delay for bottom text */
+    animation: fade-in 1s ease-out 1.5s forwards; /* Delay for bottom text */
   }
 
   .animate-blink {

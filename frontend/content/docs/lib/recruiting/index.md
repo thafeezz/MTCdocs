@@ -1,3 +1,3 @@
 # Recruiting
 
-{%note%} 🚧 coming soon {%/note%}
+{%alert%} 🚧 coming soon {%/alert%}

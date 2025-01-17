@@ -42,7 +42,7 @@ How can we solve these problems?
 2. "I go to UMich and I always found the resources I need"
    1. That's great! But not everyone may share that experience. Maybe you are social or maybe you aren't, but somehow you found your way. We want to make it super easy for people to find what they are looking for.
 3. "I don't get along with certain people"
-   1. When one sees ppl working together doing better than they themselves are, they will analyze what made them successful. Sure, maybe they are abnormally smart, maybe they have a lot of resoureces, etc. But the one who--works hard, works collaboratively, shows gratitude, and works with the cards they are dealt-—can accomplish anything.
+   1. When one sees ppl working together doing better than they themselves are, they will analyze what made them successful. Sure, maybe they are abnormally smart, maybe they have a lot of resources, etc. But the one who--works hard, works collaboratively, shows gratitude, and works with the cards they are dealt-—can accomplish anything.
 
 ## The big appeal
 

@@ -10,7 +10,9 @@ export const DocContent = ({ children }: DocContentProps) => {
   return (
     <>
       <Breadcrumb />
-      <div className={`${inter.className} prose prose-invert prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground max-w-none`}>
+      <div
+        className={`${inter.className} prose prose-invert prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground max-w-none`}
+      >
         {children}
       </div>
     </>

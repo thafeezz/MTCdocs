@@ -1,8 +1,6 @@
 # TODO
 
-{%callout%}
-If you're interested in working on some of these (it will look good as a resume project), please reach out to Talha Hafeez @ <thafeez@umich.edu>.  
-{%/callout%}
+{%tip%}If you're interested in working on some of these (it will look good as a resume project), please reach out to Talha Hafeez @ <thafeez@umich.edu>.{%/tip%}
 
 1. hifi ui/frontend incremental redesign
 2. search

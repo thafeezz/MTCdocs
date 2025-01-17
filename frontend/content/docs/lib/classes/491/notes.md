@@ -7,13 +7,10 @@ author: Talha Hafeez
 
 > by {%$frontmatter.author%}
 
-{% callout %} These are the notes I took before the final to cover my understanding of all concepts. Use these notes as an intro to distributed systems or to go over content before your exams.{%/callout%}
+{% note %} These are the notes I took before the final to cover my understanding of all concepts. Use these notes as an intro to distributed systems or to go over content before your exams.{%/note%}
 
-### NOTE:
-
-below is a high level description of the problems of distributed systems, their solutions, and the intuitions behind the problems and solutions
-
-do not use as a source of truth, rather use to understand basics of distributed systems at a high level
+{%alert%} Below is a high level description of the problems of distributed systems, their solutions, and the intuitions behind the problems and solutions
+do not use as a source of truth, rather use to understand basics of distributed systems. {%/alert%}
 
 ## overview
 
@@ -596,7 +593,6 @@ at this point we have achieved a system that is fault tolerant and consistent (t
       - this is especially important if the paxos log is truncated and i fail after its truncated
       - if my data wasnt on disk and i restarted, i would lose the operations that occurred in the truncated part of the log
 
-### NOTE:
 
 i will use multiple terms to describe the same idea below
 

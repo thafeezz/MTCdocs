@@ -25,7 +25,7 @@ Noble has a very different style for exams. You probably will not write any code
 P1 is a project dedicated to help you get familiar with Golang (all projects are in Go).
 P2-4 build on top of each other, its important to understand the fundamentals and the problems you solve with each.
 
-{%note %}Noble also played with the idea of changing P4 to a project about eventual consistency, so that may or may not change in the future.{%/note%}
+{%alert %}Noble also played with the idea of changing P4 to a project about eventual consistency, so that may or may not change in the future.{%/alert%}
 
 A quick summary:
 

@@ -1,8 +1,7 @@
 import { Config, nodes } from "@markdoc/markdoc";
 import Heading from "./Heading";
-import Callout from "./Callout";
 import React, { ReactNode } from "react";
-import Note from "./Note";
+import { Note, Alert, Tip } from "./Note";
 import { Image } from "./Image";
 
 const config: Config = {
@@ -35,16 +34,24 @@ const config: Config = {
     },
   },
   tags: {
-    callout: {
-      render: "Callout",
+    note: {
+      render: "Note",
       attributes: {
         title: {
           type: String,
         },
       },
     },
-    note: {
-      render: "Note",
+    alert: {
+      render: "Alert",
+      attributes: {
+        title: {
+          type: String,
+        },
+      },
+    },
+    tip: {
+      render: "Tip",
       attributes: {
         title: {
           type: String,
@@ -61,10 +68,11 @@ const config: Config = {
 const components = {
   Heading: Heading,
   Paragraph: ({ children }: { children: ReactNode }) => {
-    return <div className="text-lg mb-5">{children}</div>;
+    return <div className="mb-5">{children}</div>;
   },
-  Callout: Callout,
   Note: Note,
+  Alert: Alert,
+  Tip: Tip,
   Image: Image,
   underline: ({ children }: { children: ReactNode }) => (
     <span style={{ textDecoration: "underline" }}>{children}</span>
