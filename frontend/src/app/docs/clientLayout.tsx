@@ -2,6 +2,7 @@
 
 import { Header, Sidebar, DocContent } from "@/components/ui";
 import { MobileNav } from "@/components/ui/MobileNav";
+import { TableOfContents } from "@/components/ui/TableOfContents";
 import { useIsMobile } from "@/hooks/useIsMobile";
 import { DirectoryTree } from "@/lib/types";
 import {
@@ -12,6 +13,7 @@ import {
   useEffect,
 } from "react";
 import { usePreventScroll } from "@react-aria/overlays";
+import { usePathname } from "next/navigation";
 
 const useIsomorphicLayoutEffect =
   typeof window !== "undefined" ? useLayoutEffect : useEffect;
@@ -25,6 +27,7 @@ const ClientDocsLayout = ({
 }) => {
   const { isMobile, isLoading } = useIsMobile();
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const pathname = usePathname();
 
   useIsomorphicLayoutEffect(() => {
     if (!isLoading) {
@@ -63,6 +66,7 @@ const ClientDocsLayout = ({
               ${isCollapsed ? "w-10" : "w-60"}
               transition-all duration-300
               flex-shrink-0
+              border-r border-border
             `}
           >
             <Sidebar
@@ -82,9 +86,16 @@ const ClientDocsLayout = ({
           </div>
         )}
 
-        <div className="flex-1">
-          <div className="h-full overflow-y-auto">
-            <DocContent>{children}</DocContent>
+        <div className="flex-1 overflow-y-auto">
+          <div className="min-h-full flex">
+            <div className="flex-1 px-16 py-8">
+              <DocContent>{children}</DocContent>
+            </div>
+            {!isMobile && (
+              <div className="w-80 flex-shrink-0 px-4 py-8">
+                <TableOfContents key={pathname} />
+              </div>
+            )}
           </div>
         </div>
       </div>

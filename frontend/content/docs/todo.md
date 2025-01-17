@@ -5,8 +5,6 @@ If you're interested in working on some of these (it will look good as a resume 
 {%/callout%}
 
 1. hifi ui/frontend incremental redesign
-2. quick nav on home
-3. breadcrumb/in-page nav
-4. search
-5. chatbot style search
-6. feedback on the bottom of pages (see langchain docs)
+2. search
+3. chatbot style search
+4. feedback on the bottom of pages (see langchain docs)

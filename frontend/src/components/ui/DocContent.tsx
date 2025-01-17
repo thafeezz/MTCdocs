@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import { inter } from "../../../styles/fonts";
+import { Breadcrumb } from "./BreadcrumbNav";
 
 interface DocContentProps {
   children: ReactNode;
@@ -7,12 +8,11 @@ interface DocContentProps {
 
 export const DocContent = ({ children }: DocContentProps) => {
   return (
-    <main className="flex-1 p-6 lg:p-16 overflow-y-auto bg-background">
-      <div className={`${inter.className} prose max-w-4xl mx-auto`}>
-        <div className="prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground">
-          {children}
-        </div>
+    <>
+      <Breadcrumb />
+      <div className={`${inter.className} prose prose-invert prose-headings:text-foreground prose-p:text-foreground prose-strong:text-foreground max-w-none`}>
+        {children}
       </div>
-    </main>
+    </>
   );
 };

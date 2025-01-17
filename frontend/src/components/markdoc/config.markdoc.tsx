@@ -3,6 +3,7 @@ import Heading from "./Heading";
 import Callout from "./Callout";
 import React, { ReactNode } from "react";
 import Note from "./Note";
+import { Image } from "./Image";
 
 const config: Config = {
   nodes: {
@@ -15,6 +16,16 @@ const config: Config = {
     },
     paragraph: {
       render: "Paragraph",
+    },
+    image: {
+      render: "Image",
+      attributes: {
+        src: { type: String, required: true },
+        alt: { type: String, required: true },
+        title: { type: String },
+        width: { type: Number },
+        height: { type: Number },
+      },
     },
   },
   variables: {
@@ -54,6 +65,7 @@ const components = {
   },
   Callout: Callout,
   Note: Note,
+  Image: Image,
   underline: ({ children }: { children: ReactNode }) => (
     <span style={{ textDecoration: "underline" }}>{children}</span>
   ),
