@@ -3,10 +3,10 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - 'content/docs/**'
+      - 'frontend/content/docs/**'
   pull_request:
     paths:
-      - 'content/docs/**'
+      - 'frontend/content/docs/**'
 
 jobs:
   update-embeddings:
