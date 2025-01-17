@@ -3,3 +3,4 @@ volume/
 .idea/
 .terraform/
 .terraform.lock.hcl
+env/
