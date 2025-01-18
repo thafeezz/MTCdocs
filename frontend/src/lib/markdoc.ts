@@ -1,5 +1,5 @@
 import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { join, normalize } from "node:path";
 import Markdoc from "@markdoc/markdoc";
 import yaml from "js-yaml";
 import { components, config } from "@/components/markdoc/config.markdoc";
@@ -7,11 +7,13 @@ import { ReactNode } from "react";
 import React from "react";
 
 export const getMarkdownContent = async (slug: string): Promise<ReactNode> => {
-  const basePath = join(process.cwd(), "content/docs");
+  const decodedSlug = decodeURIComponent(slug);
+
+  const basePath = normalize(join(process.cwd(), "content/docs"));
   const filePath =
-    !slug || slug === "docs"
-      ? join(basePath, "index.md")
-      : join(basePath, `${slug}.md`);
+    !decodedSlug || decodedSlug === "docs"
+      ? normalize(join(basePath, "index.md"))
+      : normalize(join(basePath, `${decodedSlug}.md`));
 
   try {
     const fileContent = readFileSync(filePath, "utf-8");

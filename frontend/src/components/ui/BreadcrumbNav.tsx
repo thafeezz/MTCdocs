@@ -13,8 +13,11 @@ export const Breadcrumb = () => {
     .split("/")
     .filter(Boolean)
     .map((segment) => ({
-      name: segment.charAt(0).toUpperCase() + segment.slice(1),
-      path: segment,
+      // Decode the URL-encoded segment before transforming
+      name:
+        decodeURIComponent(segment).charAt(0).toUpperCase() +
+        decodeURIComponent(segment).slice(1),
+      path: segment, // Keep the encoded version for the URL
     }));
 
   return (

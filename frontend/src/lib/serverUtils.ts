@@ -2,17 +2,7 @@ import path from "path";
 import fs from "fs";
 
 export const navConfig = {
-  order: [
-    
-    "overview",
-    "lib",
-    "c8m",
-    "contribute",
-    "contact",
-    "support",
-    "todo",
-  ],
-  // Define sections that should show their children by default
+  order: ["overview", "lib", "c8m", "contribute", "contact", "support", "todo"],
   expandedSections: ["lib", "overview", "contact"],
 };
 
@@ -25,12 +15,11 @@ export type DirectoryTree = {
 };
 
 const getSortOrder = (name: string): number => {
-  const index = navConfig.order.indexOf(name);
-  return index === -1 ? navConfig.order.length : index;
+  const index = navConfig.order.indexOf(name.toLowerCase());
+  return index === -1 ? 999 : index;
 };
 
 const shouldIncludeFile = (name: string): boolean => {
-  // Don't show index files in the sidebar
   return !name.startsWith("index.");
 };
 
@@ -40,12 +29,9 @@ export const getDirectoryTree = (dirPath: string): DirectoryTree => {
   const stats = fs.statSync(absolutePath);
 
   if (!stats.isDirectory()) {
-    // If it's an index file and we're not including it
     if (!shouldIncludeFile(name)) {
       return null;
     }
-
-    // For files, remove the extension
     const nameWithoutExt = name.replace(/\.[^/.]+$/, "");
     return {
       name: nameWithoutExt,
@@ -55,17 +41,24 @@ export const getDirectoryTree = (dirPath: string): DirectoryTree => {
     };
   }
 
-  const children = fs
+  let children = fs
     .readdirSync(absolutePath)
     .map((file) => getDirectoryTree(path.join(dirPath, file)))
-    .filter((item) => item !== null) // Remove null items (filtered index files)
-    .sort((a, b) => {
-      // Sort by configured order first, then alphabetically
-      if (a.sortOrder !== b.sortOrder) {
-        return (a.sortOrder || 999) - (b.sortOrder || 999);
-      }
-      return a.name.localeCompare(b.name);
-    });
+    .filter((item) => item !== null);
+
+  // Sort children using explicit sortOrder comparison
+  children = children.sort((a, b) => {
+    const aOrder = a.sortOrder ?? 999;
+    const bOrder = b.sortOrder ?? 999;
+
+    // Always compare sortOrder first
+    if (aOrder !== bOrder) {
+      return aOrder - bOrder;
+    }
+
+    // If sortOrder is the same, fall back to alphabetical
+    return a.name.localeCompare(b.name);
+  });
 
   return {
     name,

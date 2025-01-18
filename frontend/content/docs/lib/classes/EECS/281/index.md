@@ -13,7 +13,7 @@ Take this with 370/376 - I recommend 370 if you want to take 482 (Operating Syst
 
 281 is important for recruiting for software engineering internships, and it will absolutely be a big asset to your Leetcode skills if you put in the effort.
 
-Also, search AJZHOU 281 IA notes - this is a great resource.
+Also, search [AJZHOU 281 IA notes](https://ajzhou.gitlab.io/eecs281/notes/) - this is a great resource.
 
 ## Lecture
 
