@@ -15,7 +15,7 @@ Contributions to MTCdocs are highly encouraged. If you have advice on a class, a
 
 ### Why should I contribute?
 
-Authoring docs will help other students get the knowledge they otherwise might not be able to get. I would encourage reading our [thesis](/docs/thesis) to truly get an idea of our mission. If you are able to write about advice, experience, etc, please take the time to do so, it will count as sadaqah jariah iA.
+Authoring docs will help other students get the knowledge they otherwise might not be able to get. I would encourage reading our [thesis](/docs/overview/thesis) to truly get an idea of our mission. If you are able to write about advice, experience, etc, please take the time to do so, it will count as sadaqah jariah iA.
 
 {%alert%} MTC/docs welcomes docs that share opinions about classes/professors, but please be respectful and genuine with advice on how to succeed. The goal is to make it easier for people to succeed, not scare them away. {%/alert%}
 
