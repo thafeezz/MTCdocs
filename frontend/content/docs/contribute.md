@@ -3,9 +3,9 @@
 ## Interested in MTC or contributing to MTC/docs?
 
 Reach out to MTC-UMich leadership:  
-Co-President: Ihsaan Yasin (<iyasin@umich.edu>)  
-Co-President: Arriyan Raza (<aaraza@umich.edu>)  
-VP Education: Talha Hafeez (<thafeez@umich.edu>)
+Co-President: Ihsaan Yasin (<iyasin[at]umich[dot]edu>)  
+Co-President: Arriyan Raza (<aaraza[at]umich[dot]edu>)  
+VP Education: Talha Hafeez (<thafeez[at]umich[dot]edu>)
 
 ### Contribute to MTC/docs
 
@@ -21,6 +21,6 @@ Authoring docs will help other students get the knowledge they otherwise might n
 
 ### Where do I start?
 
-If you don't know how to organize within MTC/docs or aren't familiar with GitHub (learn more about GitHub [here](/docs/c8m/git)), write a page (markdown) and email it to me (<thafeez@umich.edu>). I'll take care of it from there.
+If you don't know how to organize within MTC/docs or aren't familiar with GitHub (learn more about GitHub [here](/docs/c8m/git)), write a page (markdown) and email it to me (<thafeez[at]umich[dot]edu>). I'll take care of it from there.
 
 The hope is that contributions will become easier as the platform develops iA, but for now, please bear with us.
