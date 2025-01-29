@@ -19,7 +19,7 @@ interface InfoCardProps {
 
 const InfoCard = ({ title, description, content, href }: InfoCardProps) => {
   return (
-    <Link href={href} className="block w-full max-w-sm">
+    <Link href={href} className="block w-full">
       <Card
         className="
         overflow-hidden 
@@ -35,7 +35,7 @@ const InfoCard = ({ title, description, content, href }: InfoCardProps) => {
         hover:border-maize/80
       "
       >
-        <CardHeader className="">
+        <CardHeader>
           <div className="flex items-center gap-2">
             <FileText className="w-5 h-5 text-maize" />
             <CardTitle
