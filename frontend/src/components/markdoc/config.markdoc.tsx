@@ -3,6 +3,8 @@ import Heading from "./Heading";
 import React, { ReactNode } from "react";
 import { Note, Alert, Tip } from "./Note";
 import { Image } from "./Image";
+import InfoCard from "./InfoCard";
+import Grid from "./Grid";
 
 const config: Config = {
   nodes: {
@@ -34,6 +36,36 @@ const config: Config = {
     },
   },
   tags: {
+    grid: {
+      render: "Grid",
+      attributes: {
+        columns: {
+          type: Number,
+          default: 3,
+        },
+      },
+    },
+    infocard: {
+      render: "InfoCard",
+      attributes: {
+        href: {
+          type: String,
+          required: true,
+        },
+        title: {
+          type: String,
+          required: true,
+        },
+        description: {
+          type: String,
+          required: false,
+        },
+        content: {
+          type: String,
+          required: false,
+        },
+      },
+    },
     note: {
       render: "Note",
       attributes: {
@@ -74,6 +106,8 @@ const components = {
   Alert: Alert,
   Tip: Tip,
   Image: Image,
+  InfoCard: InfoCard,
+  Grid: Grid,
   underline: ({ children }: { children: ReactNode }) => (
     <span style={{ textDecoration: "underline" }}>{children}</span>
   ),
