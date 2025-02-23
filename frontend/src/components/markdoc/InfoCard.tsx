@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { jerseyOne, pressStart } from "../../../styles/fonts";
+import { jerseyOne } from "../../../styles/fonts";
 import { FileText } from "lucide-react";
 
 interface InfoCardProps {
@@ -50,11 +50,11 @@ const InfoCard = ({ title, description, content, href }: InfoCardProps) => {
             {description}
           </CardDescription> */}
         </CardHeader>
-        {/* <CardContent className="p-2">
+        <CardContent className="">
           <p className="text-sm text-foreground dark:text-secondary-foreground">
             {content}
           </p>
-        </CardContent> */}
+        </CardContent>
       </Card>
     </Link>
   );

@@ -44,11 +44,11 @@ how do 2 machines that are geographically separated stay in sync?
   - the system?
     - this makes more sense, but how tf we do that?
     - we have a few kinds of replication schemes
-      - primary/backup replication, with $n$ backups
+      - primary/backup replication, with {%math%} n {%/math%} backups
       - consensus protocols
         - we focus on the paxos family of distributed consensus protocols
 
-overall, to goal is to make sure we can keep our $n$ machines across the world in sync
+overall, to goal is to make sure we can keep our {%math%} n {%/math%} machines across the world in sync
 
 - while allowing concurrent requests
 - while knowing machines can fail at any time
@@ -122,43 +122,43 @@ wait, why cant we use time to say that event A happened at 12:00 pm, event B hap
   - cristian’s algorithm
     ![image.png](/images/docs/lib/classes/491/cristian.png)
     - 1 central timeserver
-    - client sends request to timeserver with its local time $T_1$, begins measuring round trip time
-    - timeserver stamps request with its local time $T_2$
-    - timeserver sends response with its local time $T_3$ and $T_2$
-    - client timestamps response with $T_4$
+    - client sends request to timeserver with its local time {%math%} T_1 {%/math%}, begins measuring round trip time
+    - timeserver stamps request with its local time {%math%} T_2 {%/math%}
+    - timeserver sends response with its local time {%math%} T_3 {%/math%} and {%math%} T_2 {%/math%}
+    - client timestamps response with {%math%} T_4 {%/math%}
 
 ### lamport and vector clocks
 
 so we’ve established that we cant use time to order events, but do we even need it?
 
 - as long as our events are ordered, and the server sets that order and sticks to it, we should be good
-- if we can say that event $A$ happens-before event $B$
+- if we can say that event {%math%} A {%/math%} happens-before event {%math%} B {%/math%}
   - then we can order these events in this way
 - intro the idea of Lamport clocks (logical clocks)
   ![image.png](/images/docs/lib/classes/491/lamport.png)
-  - we have 3 processes $P1$, $P2$, $P3$
-    - they all have their own local time $C$
-    - the diagram above is pretty self explanatory
-      - processes send their $C$ value to other processes
-      - the receiving processes with take the max of their clock and the clock of the sender and add 1
+  - we have 3 processes {%math%}P1{%/math%}, {%math%}P2{%/math%}, {%math%}P3{%/math%}
+    - they all have their own local time {%math%}C{%/math%}
+    - the diagram above is pretty self-explanatory
+      - processes send their {%math%}C{%/math%} value to other processes
+      - the receiving processes will take the max of their clock and the clock of the sender and add 1
         - this guarantees that msgs have some ordering
-- lamport clocks dont capture time, they capture causality (happens-before relationships)
-  - they only provide local ordering per process
-    - notice how we can say $C(a)=1$ on $P1$ happens after $C(d) = 1$ on $P3$ in the above diagram
-      - we can just see that event $a$ is drawn slightly after $d$, but the Lamport clock doesnt know that
-      - in this sense, the clock fails to provide a total ordering of event across all nodes in the system
-        - unless we break ties by PIDs (process IDs)
-          - this wont address the concurrency issue
-  - as described above, since lamport clocks assign scalar values to events
-    - they cant distinguish between truly concurrent events, and events with the same $C$ value
-      - $C(a) = C(d) = 1$ does not mean these events are concurrent, or even related, in the above pic
-        - it just means that these were the first events on each individual process $P1$ and $P3$
-  - what does accomplish this?
-    - vector clocks
-- vector clocks are a vector of lamport clocks
-  - where $len(V) = \text{\# of processes}$ and $V[i]=P_i$, where $i$ is an index and $P$ is a process
-    ![image.png](/images/docs/lib/classes/491/vector-clock.png)
-  - a local event on for $P_i$ has its clock incremented
+  - Lamport clocks don’t capture time, they capture causality (happens-before relationships)
+    - they only provide local ordering per process
+      - notice how we can say {%math%}C(a)=1{%/math%} on {%math%}P1{%/math%} happens after {%math%}C(d) = 1{%/math%} on {%math%}P3{%/math%} in the above diagram
+        - we can just see that event {%math%}a{%/math%} is drawn slightly after {%math%}d{%/math%}, but the Lamport clock doesn’t know that
+        - in this sense, the clock fails to provide a total ordering of events across all nodes in the system
+          - unless we break ties by PIDs (process IDs)
+            - this won’t address the concurrency issue
+    - as described above, since Lamport clocks assign scalar values to events
+      - they can’t distinguish between truly concurrent events and events with the same {%math%}C{%/math%} value
+        - {%math%}C(a) = C(d) = 1{%/math%} does not mean these events are concurrent, or even related, in the above pic
+          - it just means that these were the first events on each individual process {%math%}P1{%/math%} and {%math%}P3{%/math%}
+    - what does accomplish this?
+      - vector clocks
+  - vector clocks are a vector of Lamport clocks
+    - where {%math%}len(V) = \text{\# of processes}{%/math%} and {%math%}V[i]=P_i{%/math%}, where {%math%}i{%/math%} is an index and {%math%}P{%/math%} is a process  
+      ![image.png](/images/docs/lib/classes/491/vector-clock.png)
+  - a local event on for {%math%}P_i{%/math%} has its clock incremented
   - when a vector clock is received
     - take the element-wise max of the local vector clock and the one sent in the msg
     - then increment the local clock
@@ -236,7 +236,7 @@ now we move on to the different schemes we can use to replicate state across mul
 
 project 2
 
-- $n$ backups means can tolerate $n$ failures
+- {%math%}n{%/math%} backups means can tolerate {%math%}n{%/math%} failures
 - this scheme uses view service that knows the state of the system at all times
   - it sends pings to the primary and backup server(s) to see if theyre alive
   - if a ping is missed, then the view will advance and the current backup is promoted to primary and an idle server is made the backup
@@ -261,27 +261,27 @@ project 2
 project 3
 
 - we have a cluster of nodes that agree on events and the order in which they happen using a log (multi-paxos)
-- we are $f$-fault tolerant if we have $2f+1$ replicas in our paxos cluster
-- can make progresses with any majority subset of the nodes in the paxos cluster, can tolerate $f$ failures
+- we are {%math%}f{%/math%}-fault tolerant if we have {%math%}2f+1{%/math%} replicas in our paxos cluster
+- can make progresses with any majority subset of the nodes in the paxos cluster, can tolerate {%math%}f{%/math%} failures
 - algorithm
   - paxos works via a 2-phase protocol with majority consensus in each round
     - each node plays the role of proposer, acceptor, and learner at the same time
     - nodes are not set on only THEIR value being the one who wins the vote, but they still compete to pick a value to commit
     - a node can vote on its own value
   - prepare phase
-    - consider nodes $A, B, C$
-    - node $A$ in the cluster proposes a value with a unique ballot # $n$ to all other nodes
-    - nodes $B,C$ receive the prepare msg (maybe — msg might have dropped), and update their highest known ballot # $n_p$ if $n >n_p$
-      - this means the nodes $B,C$ have promised to only listen to ballots with a higher ballot #
-        - $B$ and $C$ might reply with a proposal theyve accepted $(n_a,v_a)$
-      - if a node receives a prepare with a ballot # $n$ that is lower than that nodes $n_p$, the will reject it
+    - consider nodes {%math%}A, B, C{%/math%}
+    - node {%math%}A{%/math%} in the cluster proposes a value with a unique ballot # {%math%}n{%/math%} to all other nodes
+    - nodes {%math%}B,C{%/math%} receive the prepare msg (maybe — msg might have dropped), and update their highest known ballot # {%math%}n_p{%/math%} if {%math%}n >n_p{%/math%}
+      - this means the nodes {%math%}B,C{%/math%} have promised to only listen to ballots with a higher ballot #
+        - {%math%}B{%/math%} and {%math%}C{%/math%} might reply with a proposal theyve accepted {%math%}(n_a,v_a){%/math%}
+      - if a node receives a prepare with a ballot # {%math%}n{%/math%} that is lower than that nodes {%math%}n_p{%/math%}, the will reject it
     - if a majority of nodes accept he prepare msg from the node that is proposing, the node will move to the accept phase
-      - otherwise it will repropose with a more competitive ballot # $n$
+      - otherwise it will repropose with a more competitive ballot # {%math%}n{%/math%}
   - accept phase
-    - node $A$ will now choose a value to vote on
-      - if node $A$ received $(n_a,v_a)$ pairs from both $B$ and $C$
-        - it will choose the pair with the highest $n_a$ and then propose this value to other nodes
-      - otherwise it will propose its own value $v$
+    - node {%math%}A{%/math%} will now choose a value to vote on
+      - if node {%math%}A{%/math%} received {%math%}(n_a,v_a){%/math%} pairs from both {%math%}B{%/math%} and {%math%}C{%/math%}
+        - it will choose the pair with the highest {%math%}n_a{%/math%} and then propose this value to other nodes
+      - otherwise it will propose its own value {%math%}v{%/math%}
     - if the majority accept this proposal, the value is accepted and becomes immutable (the value is considered committed and cant change)
       - then that value is propagated to learners
   - learn phase
@@ -292,7 +292,7 @@ project 3
   - use binary exponential backoff to make livelock astronomically improbable
   - paxos prefers safety over liveness
 - multi-shot paxos uses paxos to agree on an event for multiple instances in a log
-  - so consider a log, the $i$th index is the value that was voted on thru paxos
+  - so consider a log, the {%math%}i{%/math%}th index is the value that was voted on thru paxos
     - each element of the log is voted on using paxos
   - use an RSM (replicated state machine) to handle the logic of creating the paxos log (project 3)
 - leader paxos
@@ -365,8 +365,8 @@ an important point overall, consistency requires synchrony
 what is eventual consistency? its consistency that is eventual
 
 - meaning that all replicas in a system will not be fully consistent when the client receives a response to a request
-  - ie, after a write, there is some time later $T$ at which all future reads will reflect the latest write
-  - $T$ is unbounded but definitive, that time $T$ WILL come
+  - ie, after a write, there is some time later {%math%}T{%/math%} at which all future reads will reflect the latest write
+  - {%math%}T{%/math%} is unbounded but definitive, that time {%math%}T{%/math%} WILL come
 - we saw in a strongly consistent system, there is no possibility of getting stale data, as to the client it appears that all the data is on one machine
   - with eventual consistency, it is possible that we get back stale data after a read, if the system has not reached convergence
 - why would we want eventual consistency?
@@ -403,26 +403,26 @@ how does eventual consistency provide an ordering of events?
     - or presenting the conflict the the application user
       - think a git merge conflict
 - how do we synchronize logs between two peers?
-  - $A$ pulls updates from $B$
+  - {%math%}A{%/math%} pulls updates from {%math%}B{%/math%}
     ![image.png](/images/docs/lib/classes/491/peer-sync.png)
-    - $A$ tells $B$
-      - it knows all updates on $X$ up to and including time 40
-      - it knows all updates on $Y$ up to and including time 20
-    - $B$ tells $A$ that is knows a later update $U5$ on $Y$ at time 40, so $A$ will learn this update
-      - $B$ doesnt send any other updates bc $A$ has implied that it knows $X$’s events ≤ 40 and all of $Y$’s events ≤ 20
-  - $B$ pulls updates from $A$
+    - {%math%}A{%/math%} tells {%math%}B{%/math%}
+      - it knows all updates on {%math%}X{%/math%} up to and including time 40
+      - it knows all updates on {%math%}Y{%/math%} up to and including time 20
+    - {%math%}B{%/math%} tells {%math%}A{%/math%} that is knows a later update {%math%}U5{%/math%} on {%math%}Y{%/math%} at time 40, so {%math%}A{%/math%} will learn this update
+      - {%math%}B{%/math%} doesnt send any other updates bc {%math%}A{%/math%} has implied that it knows {%math%}X{%/math%}’s events ≤ 40 and all of {%math%}Y{%/math%}’s events ≤ 20
+  - {%math%}B{%/math%} pulls updates from {%math%}A{%/math%}
     ![image.png](/images/docs/lib/classes/491/peer-sync2.png)
-    - $B$ tells $A$
-      - it knows all updates on $X$ up to and including time 30
-      - it knows all updates on $Y$ up to and including time 40
-    - $A$ tells $B$ that it knows about a later update $U4$ on $X$ that occured at time 40, so $B$ will learn this update
+    - {%math%}B{%/math%} tells {%math%}A{%/math%}
+      - it knows all updates on {%math%}X{%/math%} up to and including time 30
+      - it knows all updates on {%math%}Y{%/math%} up to and including time 40
+    - {%math%}A{%/math%} tells {%math%}B{%/math%} that it knows about a later update {%math%}U4{%/math%} on {%math%}X{%/math%} that occured at time 40, so {%math%}B{%/math%} will learn this update
 - the reason we didnt use logical clocks for systems with linearizability guarantees is that we couldnt make progress unless all replicas were present
   - this is less of a problem with eventual consistency
     - bc updates are always accepted and we will always make progress
   - but we cant finalize updates to the entire system or truncate the log in case of a network partition
     - since all nodes need to talk to each other in order to synchronize
-    - the problem is that say peer $A$ wants to synchronize w $B$, but the owner or peer $B$ turned off the device
-      - then $A$ cant sync until $B$ is on, but we cant control that
+    - the problem is that say peer {%math%}A{%/math%} wants to synchronize w {%math%}B{%/math%}, but the owner or peer {%math%}B{%/math%} turned off the device
+      - then {%math%}A{%/math%} cant sync until {%math%}B{%/math%} is on, but we cant control that
   - so make a primary server that is managed somewhere (minimize machine faults)
     - have that primary server make final decisions about the ordering of events
     - and inform replicas of which updates are finalized
@@ -580,19 +580,18 @@ at this point we have achieved a system that is fault tolerant and consistent (t
   - but more if not always better, the more replicas, the more time it takes for us to replicate state across all of them
   - the more shards, the more clusters per shard, which is an inefficient use of resources
 - so essentially we have this combination for a linearizable system that uses paxos for fault tolerance (project 4)
-  - $n$ clusters, each cluster consists of $2f+1$ machines, each cluster is $f$ fault tolerant
+  - {%math%}n{%/math%} clusters, each cluster consists of {%math%}2f+1{%/math%} machines, each cluster is {%math%}f{%/math%} fault tolerant
   - each cluster is responsible for some # of shards, the data is split up per shard
     - so data per shard is replicated within each cluster, the data across all shards makes up the data across the whole system
 - example
-  - clusters $A,B,C$ with 3 servers in each cluster, 12 shards, 4 per cluster
-    - cluster $A$ owns shard 0-3, data within these shards is replicated across servers
-    - cluster $B$ owns shard 4-8, data within these shards is replicated across servers
-    - cluster $C$ owns shard 9-12, data within these shards is replicated across servers
-  - bc our data is replicated, if any server with in a cluster fails, we are good bc we have $2f+1$ servers so we can withstand $f=1$ faults
+  - clusters {%math%}A,B,C{%/math%} with 3 servers in each cluster, 12 shards, 4 per cluster
+    - cluster {%math%}A{%/math%} owns shard 0-3, data within these shards is replicated across servers
+    - cluster {%math%}B{%/math%} owns shard 4-8, data within these shards is replicated across servers
+    - cluster {%math%}C{%/math%} owns shard 9-12, data within these shards is replicated across servers
+  - bc our data is replicated, if any server with in a cluster fails, we are good bc we have {%math%}2f+1{%/math%} servers so we can withstand {%math%}f=1{%/math%} faults
     - in reality when a server gets an update, it should persist the data so that if it fails, its not starting from scratch
       - this is especially important if the paxos log is truncated and i fail after its truncated
       - if my data wasnt on disk and i restarted, i would lose the operations that occurred in the truncated part of the log
-
 
 i will use multiple terms to describe the same idea below
 
@@ -619,7 +618,7 @@ now the question is how do we decide how to split keys across shards?
 - using one node per replicated cluster on the ring will lead to some nodes handling more keys than others
   - and when clusters join and leave, some clusters will have more keys than others
   - we use virtual nodes to solve this
-- virtual nodes basically split a single clusters work into $v$ different nodes
+- virtual nodes basically split a single clusters work into {%math%}v{%/math%} different nodes
   ![image.png](/images/docs/lib/classes/491/vnodes.png)
   - now keys are more distributed across physical nodes on the ring
     - this also allows certain nodes that can tolerate more load to have more virtual nodes
@@ -633,16 +632,16 @@ now we need someone to track which shards belong to which servers
   - this approach works if we control all servers, if we dont, we might opt for a non-centralized P2P method
 - or can avoid a centralized service by using a distributed hash table (DHT)
   - we can have every node in the system know where everything else is
-    - this is $O(1)$ lookup, but each node has $O(n)$ state, and if we scale to thousands or millions of nodes, this wont work
+    - this is {%math%}O(1){%/math%} lookup, but each node has {%math%}O(n){%/math%} state, and if we scale to thousands or millions of nodes, this wont work
   - given a node in the service and a key, would like to be able to find the node that is responsible for the key
 - one way to achieve this P2P lookup is that each node knows who comes after it
   - if im looking for a key, i ask my successor if they have it, they ask their successor, and so on
-    - however, this is a worst case $O(n)$ lookup, but $O(1)$ space
+    - however, this is a worst case {%math%}O(n){%/math%} lookup, but {%math%}O(1){%/math%} space
       - can we do better? well the keys and nodes on the ring are sorted bc of the hashing function
         - binary search!
 - root a balanced binary tree at every node in the ring
   - this allows every node to half its search space
-    - every node maintains $log(n)$ pointers to over nodes in the system
+    - every node maintains {%math%}log(n){%/math%} pointers to over nodes in the system
   - stored in **finger tables**
     ![image.png](/images/docs/lib/classes/491/ft1.png)
     ![image.png](/images/docs/lib/classes/491/ft2.png)
@@ -658,7 +657,7 @@ now we need someone to track which shards belong to which servers
       - the more that servers joins and leave, the more inaccurate our finger tables and ring will become
         - so this is nodes periodically check their successor and predecessor and update their finger tables
   - summary
-    - basic idea is → i know $log(n)$ nodes, i know where they live on the hash circle, and i know the hash value of the key im looking for
+    - basic idea is → i know {%math%}log(n){%/math%} nodes, i know where they live on the hash circle, and i know the hash value of the key im looking for
       - so i know which two nodes the key is between
 
 ## case studies
@@ -698,15 +697,15 @@ Dynamo is rumored to be the system on which S3 was built
       - if that server fails, the data is lost
   - Dynamo improves this through replication
     ![image.png](/images/docs/lib/classes/491/dynamo-repl.png)
-    - each piece of data is replicated across $n$ successor nodes on the hash ring
-      - $n$ is a configurable parameter that you can adjust
+    - each piece of data is replicated across {%math%}n{%/math%} successor nodes on the hash ring
+      - {%math%}n{%/math%} is a configurable parameter that you can adjust
     - the system skips duplicate nodes (when a single physical server has multiple virtual nodes)
   - durability refers to the probability of not losing data updates
-    - a larger $n$ value means data is replicated on more nodes
+    - a larger {%math%}n{%/math%} value means data is replicated on more nodes
     - this increases durability because there are more copies of the data
-    - however, increasing $n$ doesn't automatically guarantee better availability
+    - however, increasing {%math%}n{%/math%} doesn't automatically guarantee better availability
       - availability is about being able to access the data when needed
-      - more replicas (larger $n$) might help with availability but other factors are involved
+      - more replicas (larger {%math%}n{%/math%}) might help with availability but other factors are involved
   - example below for clarity
 
     ```markdown
@@ -740,15 +739,15 @@ Dynamo is rumored to be the system on which S3 was built
     ```
 
 - each write will have a coordinating node
-  - say key 5 is owned by node $A,B,C$
-    - we will always try ship the write to node $A$
-    - if we cant, we try $B$
-  - say node $A$ is the coordinator for a write
-    - $A$ processes the write, and now has to forward the update to the rest of the replicas that have that data
-    - $A$ will ship the write to all other replicas that store key 5 in parallel
+  - say key 5 is owned by node {%math%}A,B,C{%/math%}
+    - we will always try ship the write to node {%math%}A{%/math%}
+    - if we cant, we try {%math%}B{%/math%}
+  - say node {%math%}A{%/math%} is the coordinator for a write
+    - {%math%}A{%/math%} processes the write, and now has to forward the update to the rest of the replicas that have that data
+    - {%math%}A{%/math%} will ship the write to all other replicas that store key 5 in parallel
   - example of divergence
     ![image.png](/images/docs/lib/classes/491/dynamo-div.png)
-    - a write to $K21$ goes to $N32$, while a different write to $K21$ goes to $N60$
+    - a write to {%math%}K21{%/math%} goes to {%math%}N32{%/math%}, while a different write to {%math%}K21{%/math%} goes to {%math%}N60{%/math%}
       - there is no ordering between these writes, bc we dont know which happened when
         - vector clocks used to provide ordering
       - we have divergence, we need a way to resolve these
@@ -758,59 +757,59 @@ Dynamo is rumored to be the system on which S3 was built
     - instead, clients can talk to any nodes in the ring
     - which means we need a decentralized, P2P way for nodes to have the up to date state of which nodes are in the system
   - whatever server the client talks to, it should be able to find the node that owns the key the client is writing to
-    - to get this data in $O(1)$ time we need to store the $O(n)$ state of all other nodes in each node
+    - to get this data in {%math%}O(1){%/math%} time we need to store the {%math%}O(n){%/math%} state of all other nodes in each node
   - when servers join/leave, we need all nodes to update their knowledge of the ring
     - for this we use the gossip protocol
   - gossip protocol is an anti-entropy mechanism
-    - servers exchange node information on some interval $T$ in parallel and pairwise
+    - servers exchange node information on some interval {%math%}T{%/math%} in parallel and pairwise
     - this allows each node to update their knowledge of all other nodes
       - meaning knowledge of joins/leaves
       - data syncing between replicas
       - state of the ring
 - synchronizing data between replicas
-  - every key is replicated on $n$ replicas
-    - $w$ is the # of writes we wait for before getting response
-      - if we have synchronous, $w=n$
-    - $r$ is the # of reads we wait for before getting response
+  - every key is replicated on {%math%}n{%/math%} replicas
+    - {%math%}w{%/math%} is the # of writes we wait for before getting response
+      - if we have synchronous, {%math%}w=n{%/math%}
+    - {%math%}r{%/math%} is the # of reads we wait for before getting response
   - we have 2 options when replicating
     - fully synchronous
-      - node $A$ receives write, updates itself, then waits for nodes $B,C$ to update their key with the write, then respond to client
+      - node {%math%}A{%/math%} receives write, updates itself, then waits for nodes {%math%}B,C{%/math%} to update their key with the write, then respond to client
     - asynchronous
-      - node $A$ receives write, updates itself, sends a request to $B,C$ to update, then responds to client, doesnt wait for $B,C$ to update
-  - we want to pick values for $w, r$ such that we maximize availability/minimize latency while ensuring reads reflect the latest write
+      - node {%math%}A{%/math%} receives write, updates itself, sends a request to {%math%}B,C{%/math%} to update, then responds to client, doesnt wait for {%math%}B,C{%/math%} to update
+  - we want to pick values for {%math%}w, r{%/math%} such that we maximize availability/minimize latency while ensuring reads reflect the latest write
     - find the sweet spot such that we are as consistent as possible but also as available and fast as possible
-    - $r+w>n$
-      - assume $n=3$
-      - if we have $r=3$ and $w=1$
+    - {%math%}r+w>n{%/math%}
+      - assume {%math%}n=3{%/math%}
+      - if we have {%math%}r=3{%/math%} and {%math%}w=1{%/math%}
         - write can go to any node, and will return as soon as it writes to one of them
         - the read has to go to all 3, so it is guaranteed to see the last write
-      - if we have $r=1$ and $w=3$
+      - if we have {%math%}r=1{%/math%} and {%math%}w=3{%/math%}
         - write has to go to all 3 nodes before returning response to client
         - if read goes to any node, it will see the last write
-      - if $r=2$ and $w=2$
+      - if {%math%}r=2{%/math%} and {%math%}w=2{%/math%}
         - write has to go to 2 of 3 node synchronously
         - read can go to either
           - both of the nodes that received the right, in that case, we see last write
           - or sees write in one node, and not in other node, but it still saw the last write
-      - in the case where $r=3 ,w=1$ and $r=2,w=2$
+      - in the case where {%math%}r=3 ,w=1{%/math%} and {%math%}r=2,w=2{%/math%}
         - how do we tell which read is latest?
           - variant on vector clocks
-            - $[(A,1),(B,3)]$
+            - {%math%}[(A,1),(B,3)]{%/math%}
             - (coordinator node, write count)
           - track nodes with nonzero values
     - example
       ![image.png](/images/docs/lib/classes/491/dynamo-rw.png)
-      - client 1 sends $put(k,x)$ to node $A$
-        - $w$ -= 1
-      - node $A$ forwards write and vector clock to node $C$
-        - $w$ -= 1
-      - client 2 sends $get(k)$ to node $A$
-        - response from $A,C$
-          - $r$ -= 2
-      - client 2 sends $put(k,y,V)$, where $V$ is the vector clock it learned of
-        - $B$ receives request, updates its vector clock and compares its clock to request clock
-        - $B$ forwards request to $C$, which compares the clocks [A,1] and ([A,1], [B,1])
-          - it accepts $B$’s update bc its vector clock is more up to date
+      - client 1 sends {%math%}put(k,x){%/math%} to node {%math%}A{%/math%}
+        - {%math%}w{%/math%} -= 1
+      - node {%math%}A{%/math%} forwards write and vector clock to node {%math%}C{%/math%}
+        - {%math%}w{%/math%} -= 1
+      - client 2 sends {%math%}get(k){%/math%} to node {%math%}A{%/math%}
+        - response from {%math%}A,C{%/math%}
+          - {%math%}r{%/math%} -= 2
+      - client 2 sends {%math%}put(k,y,V){%/math%}, where {%math%}V{%/math%} is the vector clock it learned of
+        - {%math%}B{%/math%} receives request, updates its vector clock and compares its clock to request clock
+        - {%math%}B{%/math%} forwards request to {%math%}C{%/math%}, which compares the clocks [A,1] and ([A,1], [B,1])
+          - it accepts {%math%}B{%/math%}’s update bc its vector clock is more up to date
 - resolving divergences
   - some diverged values are concurrent, we need a policy to resolve and decide what to do with multiple concurrent events
     ![image.png](/images/docs/lib/classes/491/resolving-div.png)
@@ -848,7 +847,7 @@ Dynamo is rumored to be the system on which S3 was built
     - but we can change how we partition the key space (place our nodes)
   - Dynamo looked at the possibilities of decoupling and found the fastest was statically partitioning the ring
     - ring is partitioned into equal sized shards
-    - shard is placed on the first $n$ virtual nodes after the end of the key
+    - shard is placed on the first {%math%}n{%/math%} virtual nodes after the end of the key
       ![image.png](/images/docs/lib/classes/491/static-ring.png)
     - shards and Merkel trees are stored separately
     - when a new shard joins, just hand off the shards and the Merkel trees
@@ -882,8 +881,8 @@ now that weve sharded our data cross multiple replica groups, we need to be able
   - property of individual operations
 - serializable
   - groups of transactions having a serial order
-    - transaction $A$ consists of 4 $get$s, transaction $B$ consists of 5 $put$s
-    - transaction $A$ → transaction $B$ or transaction $B$ → transaction $A$
+    - transaction {%math%}A{%/math%} consists of 4 {%math%}get{%/math%}s, transaction {%math%}B{%/math%} consists of 5 {%math%}put{%/math%}s
+    - transaction {%math%}A{%/math%} → transaction {%math%}B{%/math%} or transaction {%math%}B{%/math%} → transaction {%math%}A{%/math%}
   - groups can be serialized in some order
 - strict serializability
   - groups of transactions have some serial order that matches the external observer’s sense of order
@@ -901,7 +900,7 @@ how do we use fine grained locking to maintain serializability and isolation?
 - cant forget if we received a lock
   - this would happen if the server holding the lock crashed
     ![image.png](/images/docs/lib/classes/491/tx1.png)
-    - this example violates isolation because we have two transactions touching the same state on $P2$
+    - this example violates isolation because we have two transactions touching the same state on {%math%}P2{%/math%}
   - to solve this just store the fact that we have the lock on disk
 - if all locks were granted and the TC dies, can we just commit or abort anyways?
   - no bc the nodes dont know if the TC is dead, the msg didnt make it, or the response is delayed
@@ -940,7 +939,7 @@ how did Google put a bound on time?
 - Google put atomic clocks in every datacenter, servers in the datacenter synchronize their time with those atomic clocks
 - CPU clocks have a maximum drift rate, so just assume our clocks drift by that much
   - every 30 seconds, the clock will have a 6ms drift, so we just resync with the atomic clocks in the datacenters (time masters)
-- so when we ask for the time, we get a range $T \pm \epsilon$, where $\epsilon$ is small
+- so when we ask for the time, we get a range {%math%}T \pm \epsilon{%/math%}, where {%math%}\epsilon{%/math%} is small
   - the event MUST have occurred in this range
 - using these ideas, Google provides us with the TrueTime API
 
@@ -950,8 +949,8 @@ how did Google put a bound on time?
   - the real time at which an event occurred is no earlier than earliest and no later than latest, it is guaranteed to be in this range
   - so when we use these intervals to order events, we just order conservatively
     ![image.png](/images/docs/lib/classes/491/truetime.png)
-    - $t1$ and $t2$ COULD be distinct, but we dont know that, so just conservatively assume they are concurrent
-    - $t3$ and $t4$ are fully distinct bc there is no overlap in their time “smears”, so $t3$ happens before $t4$
+    - {%math%}t1{%/math%} and {%math%}t2{%/math%} COULD be distinct, but we dont know that, so just conservatively assume they are concurrent
+    - {%math%}t3{%/math%} and {%math%}t4{%/math%} are fully distinct bc there is no overlap in their time “smears”, so {%math%}t3{%/math%} happens before {%math%}t4{%/math%}
 - why is this so important?
   - these timestamps fully capture linearizability without needing to communicate between nodes
   - Spanner builds their system and ensures linearizability using this idea
@@ -1015,8 +1014,8 @@ how can the schema be updated with huge amounts of data in the database?
   - database can be potentially huge
   - probably will touch most if not all shards
 - perform snapshot reads and extend the table to have the new columns
-  - then there is a point in time $T$ where transactions with a timestamp $\geq T$ use the new one schema, and timestamps $<T$ use the old schema
-    - transactions $\geq T$ may have to stall briefly, but no where near as long as if we paused and migrated
+  - then there is a point in time {%math%}T{%/math%} where transactions with a timestamp {%math%}\geq T{%/math%} use the new one schema, and timestamps {%math%} <T {%/math%} use the old schema
+    - transactions {%math%}\geq T{%/math%} may have to stall briefly, but no where near as long as if we paused and migrated
 
 ## scaling beyond shards
 
@@ -1045,7 +1044,7 @@ so what can we do about this?
   - this solution uses the absence of a response to infer that the latency of a node is high
     - which is more difficult
 - can also issue staggered requests (acting on presence)
-  - meaning we send one request to one replica, then wait for some time $T$ before issuing duplicate requests to the other replicas
+  - meaning we send one request to one replica, then wait for some time {%math%}T{%/math%} before issuing duplicate requests to the other replicas
   - if the first replica received the msg, it will send a cancel msg to the other replicas that got the duplicate requests
     - cancellation almost always arrives before the duplicate request
   - the other replicas will either reject the request bc its been serviced, or respond to it

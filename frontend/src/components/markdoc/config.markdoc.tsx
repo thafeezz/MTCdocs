@@ -5,6 +5,7 @@ import { Note, Alert, Tip } from "./Note";
 import { Image } from "./Image";
 import InfoCard from "./InfoCard";
 import Grid from "./Grid";
+import { Math } from "./MathJax";
 
 const config: Config = {
   nodes: {
@@ -36,6 +37,12 @@ const config: Config = {
     },
   },
   tags: {
+    math: {
+      render: "Math",
+      attributes: {
+        inline: { type: Boolean, default: true },
+      },
+    },
     grid: {
       render: "Grid",
       attributes: {
@@ -102,12 +109,13 @@ const components = {
   Paragraph: ({ children }: { children: ReactNode }) => {
     return <div className="mb-5">{children}</div>;
   },
-  Note: Note,
-  Alert: Alert,
-  Tip: Tip,
-  Image: Image,
-  InfoCard: InfoCard,
-  Grid: Grid,
+  Note,
+  Alert,
+  Tip,
+  Image,
+  InfoCard,
+  Grid,
+  Math,
   underline: ({ children }: { children: ReactNode }) => (
     <span style={{ textDecoration: "underline" }}>{children}</span>
   ),

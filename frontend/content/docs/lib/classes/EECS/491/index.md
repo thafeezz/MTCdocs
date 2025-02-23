@@ -34,10 +34,10 @@ P2: Distributed, replicated KV store with primary-backup replication (1 fault to
 P3: Distributed, replicated KV store with Paxos consensus (`n` fault tolerant)  
 P4: Distributed, replicated, shared KV store with Paxos consensus (`n` fault tolerant)
 
-The tip for projects is to start early and spend more time thinking instead of coding. DO NOT START CODING UNTIL YOU UNDERSTAND WHAT YOU ARE DOING. You will usually write less than 100 lines of code (excluding starter code). I found some parts of the spec to be a little confusing, and spent a lot of time writing the wrong functionality for Paxos, for example. It's fairly easy to get an 80% on the projects, the last few test cases are really time consuming and tough to get, but they are worth at least 10% of the project grade. I would highly recommend getting an 80% ASAP, then spending your remaining time working on the last test cases. If you get a 100 on all projects, you already have a 75%, which is a C/C+. So even if you do poorly on both exams, you will get a B if you do really well on the projects.
+The tip for projects is to start early and spend more time thinking instead of coding. DO NOT START CODING UNTIL YOU UNDERSTAND WHAT YOU ARE DOING. You will usually write less than 100 lines of code (excluding starter code). I found some parts of the spec to be a little confusing, and spent a lot of time writing the wrong functionality for Paxos, for example. It's fairly easy to get an 80% on the projects, the last few test cases are really time consuming and tough to get, but they are worth at least 10% of the project grade. I would highly recommend getting an 80% ASAP, then spending your remaining time working on the last test cases. If you get a 100 on all projects, you already have a 75%, which is a C/C+. So even if you do poorly on both exams, you will get a B if you do really well on the projects (obviously don't aim for just the bare minimum, its very feasible to get an A in this class).
 
 Noble uses what he calls projects "mastery", which means you can get full credit on projects up until the deadline. After the deadline, you can continue to work on the project to reach an 80% max score.
 
 ## Content
 
-I took notes on the entire class and core concepts starting from the fundamentals for the final. You can find my notes [here](/docs/lib/classes/491/notes).
+I took notes on the entire class and core concepts starting from the fundamentals for the final. You can find my notes [here](491/notes).

@@ -9,6 +9,6 @@
 **Some useful resources for classes + scheduling**
 
 {% grid columns=4%}
-    {% infocard href="https://atlas.ai.umich.edu/" title="Atlas" /%}
-    {% infocard href="classes/EECS" title="EECS" /%}
+{% infocard href="https://atlas.ai.umich.edu/" title="Atlas" content="THE tool for scheduling." /%}
+{% infocard href="classes/EECS" title="EECS" content="Everything EECS."/%}
 {% /grid %}
