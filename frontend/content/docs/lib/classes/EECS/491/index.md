@@ -29,7 +29,7 @@ P2-4 build on top of each other, its important to understand the fundamentals an
 
 A quick summary:
 
-P1: MapReduce (similar to [485](/docs/lib/classes/485) P4 but in Go)  
+P1: MapReduce (similar to [485](485) P4 but in Go)  
 P2: Distributed, replicated KV store with primary-backup replication (1 fault tolerant)  
 P3: Distributed, replicated KV store with Paxos consensus (`n` fault tolerant)  
 P4: Distributed, replicated, shared KV store with Paxos consensus (`n` fault tolerant)

@@ -71,6 +71,10 @@ const config: Config = {
           type: String,
           required: false,
         },
+        disabled: {
+          type: Boolean,
+          required: false,
+        },
       },
     },
     note: {

@@ -5,8 +5,6 @@ author: Talha Hafeez
 
 # {% $frontmatter.title %}
 
-> by {% $frontmatter.author %}
-
 ## Motivating story
 
 You need more than just a degree to get a job now, the Michigan Muslim community is tight-knit, and easy to find what you need, **_if you have the right connections, and enough time._**
