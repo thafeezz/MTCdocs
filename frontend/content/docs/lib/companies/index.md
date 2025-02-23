@@ -48,7 +48,6 @@ not yet available 😔
 {% infocard disabled=true href="companies/fiverings" title="FiveRings" /%}
 {% infocard disabled=true href="companies/citadel" title="Citadel" /%}
 {% infocard disabled=true href="companies/optiver" title="Optiver" /%}
-{% infocard disabled=true href="companies/fiverings" title="FiveRings" /%}
 {% /grid %}
 
 ## Banking
