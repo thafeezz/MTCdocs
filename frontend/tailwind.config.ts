@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
 
 const colors = {
-  maize: "#FFCB05",
-  umblue: "#00274C",
+  maize: "#FFC806",
+  umblue: "#02306E",
   offwhite: "#FAF9F6",
 };
 
