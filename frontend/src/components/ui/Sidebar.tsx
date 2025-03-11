@@ -75,7 +75,7 @@ const DirectoryItem = ({ item, onNavigate, level = 0 }: DirectoryItemProps) => {
   const pathname = usePathname();
   const urlPath = getCleanPath(item.path);
   const isActive = pathname === urlPath;
-  const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(true);
   const hasChildren = item.children && item.children.length > 0;
 
   return (
@@ -99,7 +99,7 @@ const DirectoryItem = ({ item, onNavigate, level = 0 }: DirectoryItemProps) => {
           onClick={onNavigate}
         >
           <Button
-            className={`text-xs font-bold ${
+            className={`text-[8pt] font-bold ${
               isActive
                 ? "text-maize"
                 : "text-muted-foreground hover:text-foreground"
