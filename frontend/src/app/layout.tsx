@@ -1,6 +1,12 @@
 import { ThemeProvider } from "@/components/ui/providers";
 import { Analytics } from "@vercel/analytics/react";
+import type { Metadata } from "next";
 import "../../styles/globals.css";
+
+export const metadata: Metadata = {
+  title: "MTC/docs",
+  description: "Home for everything CS @ UMich",
+};
 
 export default function RootLayout({
   children,
